@@ -1,39 +1,76 @@
-import { initComma } from "@/helpers/calculateUtils";
-import { useState } from "react";
+import { initComma } from "@/helpers/utils";
+import { useState, memo } from "react";
+import ArrowDown from "../icons/arrowDown";
 type IncomeItemProps = {
   incomeSet: any;
   amount: number;
 };
 const IncomeItem = ({ incomeSet, amount }: IncomeItemProps) => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState([false, false, false, false, false]);
   const openDetail = (id: string) => {
-    setToggle((prev) => !prev);
+    const newToggle = [...toggle];
+    newToggle[incomeSet.findIndex((el: any) => el.id === id)] =
+      !newToggle[incomeSet.findIndex((el: any) => el.id === id)];
+    setToggle(newToggle);
   };
-  console.log(";;;;;;;;;;incomeSet;;;;;;;;;", incomeSet);
+  const beforeTax = Number(amount) / 12;
+  const actualMonthSalary = beforeTax - incomeSet[0]?.value?.amount;
+
   return (
     <>
-      <div className="shadow-lg my-0 mx-auto w-full bg-white selection:bg-zinc-400 selection:text-white">
-        <center
-          id="top"
-          className="p-4 border border-b-[1px] border-b-[#eee] min-h-[100px]"
-        >
-          <div className="h-16 w-16 bg-slate-500">logo</div>
+      <div className="shadow-md my-0 mx-auto w-full bg-white selection:bg-zinc-400 selection:text-white">
+        <center className="p-4 border border-b-[1px] border-b-[#eee] min-h-[100px]">
+          <div className="w-full ">
+            <h1 className="text-lg pb-4 font-semibold">
+              연봉 <span className="px-1.5 py-0.5">{amount}</span> 원
+            </h1>
+            <h2 className="text-xl font-semibold pb-4 sm:pb-10">
+              월 실수령액{" "}
+              <span className="font-bold bg-primary-100 px-2">
+                {initComma(actualMonthSalary)}
+              </span>{" "}
+              원
+            </h2>
+            <h3 className="text-sm flex justify-between px-6 pb-1">
+              공제 전 금액{" "}
+              <span>
+                월<span className="font-bold px-2">{initComma(beforeTax)}</span>
+                원
+              </span>
+            </h3>
+            <h3 className="text-sm flex justify-between px-6 pb-1">
+              공제액{" "}
+              <span>
+                {" "}
+                월
+                <span className="font-bold px-2">
+                  {initComma(incomeSet[0]?.value?.amount)}
+                </span>{" "}
+                원
+              </span>
+            </h3>
+          </div>
         </center>
-        <div
-          id="mid"
-          className="border border-b-[1px] border-b-[#eee] min-h-[80px] p-4"
-        >
+        <div className="border border-b-[1px] border-b-[#eee] min-h-[80px] p-4 py-6">
           <div className="block ml-0">
-            <h2 className="text-base pb-4">2023 {amount}만원 실수령액</h2>
-            <p className="text-sm text-[#666] leading-[1.2em]">
-              연봉 {amount} 만원의 월 실수령액은
-              <br /> 어쩌구저쩌구
+            <p className="text-sm text-[#666] leading-[1.2em] whitespace-pre-line">
+              연봉 <span className="font-bold">{initComma(amount)}</span> 원의 월
+              실수령액은
               <br />
-              냐냐냐 입니당
+              공제 전 월
+              <span className="font-bold"> {initComma(beforeTax)} </span> 원에서
+              공제액{" "}
+              <span className="font-bold">
+                {" "}
+                {initComma(incomeSet[0]?.value?.amount)}{" "}
+              </span>{" "}
+              원을 뺀 월{" "}
+              <span className="font-bold">{initComma(actualMonthSalary)}</span>{" "}
+              원 입니다.
             </p>
           </div>
         </div>
-        <div id="bot" className="min-h-[50px] mb-24 sm:w-1/2">
+        <div className="min-h-[50px] mb-24 pb-4">
           <div>
             <table className="caption-bottom table-auto w-full overflow-x-auto text-left text-gray-500 ">
               <thead className="text-sm text-gray-700 bg-gray-50 dark:bg-gray-700">
@@ -45,65 +82,35 @@ const IncomeItem = ({ incomeSet, amount }: IncomeItemProps) => {
                 </tr>
               </thead>
               <tbody>
-                {/* <tr className="bg-white border-b">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                  >
-                    합
-                  </th>
-                  <td className="px-6 py-2 text-right">354,000원</td>
-                </tr> */}
+              
                 {incomeSet &&
-                  incomeSet.map((el: any) => {
+                  incomeSet.map((el: any, idx: number) => {
                     return (
-                      <tr className="bg-white border-b" key={el.id}>
+                      <tr className="bg-white border-b group last:border-b-0" key={el?.id}>
                         <th
                           scope="row"
-                          className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap"
+                          className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap cursor-pointer group-first:py-4"
                         >
-                          {el.value.name}
-
-                          <div className="flex text-center text-xs items-center group cursor-pointer">
-                            <p
-                              // onClick={(e) => {
-                              //   console.log(e.target);
-                              //   e.target.id === el.id
-                              //     ? setToggle((prev) => !prev)
-                              //     : null;
-                              // }}
-                              id={el.id}
-                              className="text-gray-400 group-hover:text-stone-700"
+                          {el.value?.name}
+                          {el.value?.description && (
+                            <button
+                              className="flex text-center text-xs items-center group cursor-pointer"
+                              onClick={() => openDetail(el.id)}
                             >
-                              자세히
+                              <span className="text-gray-400 group-hover:text-stone-700">
+                                자세히
+                              </span>
+                              <ArrowDown size={"sm"} toggle={toggle[idx]} />
+                            </button>
+                          )}
+                          {toggle[idx] && (
+                            <p className="text-sm whitespace-normal text-gray-500">
+                              {el.value?.description}
                             </p>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth={1.5}
-                              stroke="currentColor"
-                              className={`w-2.5 h-2.5 ${
-                                toggle ? "transform rotate-180" : ""
-                              } text-gray-400 group-hover:text-stone-700`}
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                              />
-                            </svg>
-                          </div>
-                          <div>
-                            {toggle && (
-                              <p className="text-sm text-gray-500 py-1">
-                                자세한 내용
-                              </p>
-                            )}
-                          </div>
+                          )}
                         </th>
                         <td className="px-6 py-2 text-right">
-                          {initComma(el.value.amount)} 원
+                          {initComma(el.value?.amount)} 원
                         </td>
                       </tr>
                     );
@@ -116,4 +123,4 @@ const IncomeItem = ({ incomeSet, amount }: IncomeItemProps) => {
     </>
   );
 };
-export default IncomeItem;
+export default memo(IncomeItem);

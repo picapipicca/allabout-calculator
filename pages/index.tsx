@@ -2,39 +2,29 @@ import Input from "@/components/atoms/input";
 import type { NextPage } from "next";
 import { useState, useRef } from "react";
 import { useRouter } from "next/router";
-import { NextSeo } from "next-seo";
-import TaxTable from "@/components/payTax/table";
-import { initComma, useTransIncomeLight } from "@/helpers/calculateUtils";
-import Image from "next/image";
+import { useTransIncomeLight } from "@/helpers/calculateUtils";
+import { unitChange } from "@/helpers/utils";
 import { flushSync } from "react-dom";
-import IncomeItem from "@/components/atoms/incomeItem";
-import dynamic from "next/dynamic";
-import AmountSkeleton from "@/components/atoms/amountSkeleton";
-const Result = dynamic(() => import("@/components/atoms/incomeItem"), {
-  loading: () => <AmountSkeleton />,
-});
+import { NextSeo } from "next-seo";
+
 const Home: NextPage = () => {
   const router = useRouter();
   const [income, setIncome] = useState<number>();
   const [table, setTable] = useState<Boolean>(false);
   const { tableArr } = useTransIncomeLight();
   const tableScrollRef = useRef<HTMLDivElement | null>();
-  const unitChange =
-    income &&
-    (income > 99999999
-      ? income * 0.00000001 + " 억원"
-      : income > 9999
-      ? income * 0.0001 + " 만원"
-      : income + " 원");
 
   const onCalculateSalary = (e: any) => {
     e.preventDefault();
 
     if (!income) return;
-    router.push({
-      pathname: "/income/[amount]",
-      query: { amount: `${income}` },
-    }, `/${income}`);
+    router.push(
+      {
+        pathname: "/income/[amount]",
+        query: { amount: `${income}` },
+      },
+      `/income/${income}`
+    );
   };
 
   const moveToTable = () => {
@@ -119,7 +109,11 @@ const Home: NextPage = () => {
                   }}
                 />
                 <div className="mt-2.5 right-0 text-lg border-transparent h-6 text-right pr-5">
-                  <p className="text-blue-600">{unitChange}</p>
+                  {income && (
+                    <p className="text-[#07498f]">
+                      {unitChange(Number(income))}원
+                    </p>
+                  )}
                 </div>
               </div>
               <button
@@ -131,7 +125,7 @@ const Home: NextPage = () => {
               </button>
             </form>
           </section>
-          {/* <Result /> */}
+
           {/* <button
             onClick={moveToTable}
             className="mx-auto mt-8 block text-center text-gray-300 underline underline-offset-4"

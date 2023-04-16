@@ -31,10 +31,10 @@ module.exports = {
       },
       transitionTimingFunction: {
         navMenuTF: "cubic-bezier(0.16, 1, 0.3,1)",
-        nav: "cubic-bezier(.77,0,.175,1)",
+        nav: "cubic-bezier(.075,.82,.165,1)", 
       },
       transitionDuration: {
-        navMenuDuration: "2000ms",
+        navMenuDuration: "800ms",
       },
     },
     plugins: [],
