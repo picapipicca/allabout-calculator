@@ -108,14 +108,14 @@ const Nav = () => {
       >
         <div className="absolute w-full bottom-0 left-0 p-8 flex justify-between sm:justify-around font-notoSans">
           <div className="relative -bottom-6 transition-all ease-navMenuTF duration-navMenuDuration font-bold text-3xl sm:text-[7rem]">
-            <span>2023</span>
+            <span>©2023</span>
           </div>
           <nav>
             <ul className="flex space-x-4 text-sm sm:text-base">
               <li className="list-none">
                 <Link
                   href={"#"}
-                  className=" md:py-0 md:px-4 relative -bottom-10 sm:-bottom-18 no-underline text-stone-700 uppercase transition-all ease-navMenuTF duration-navMenuDuration"
+                  className=" md:py-0 md:px-4 relative -bottom-8 sm:-bottom-10 no-underline text-stone-700 uppercase transition-all ease-navMenuTF duration-navMenuDuration"
                 >
                   <svg
                     className="w-5 h-5"
@@ -134,7 +134,7 @@ const Nav = () => {
               <li className="list-none">
                 <Link
                   href={"#"}
-                  className=" md:py-0 md:px-4 relative -bottom-10 sm:-bottom-18 no-underline text-stone-700 uppercase transition-all ease-navMenuTF duration-navMenuDuration"
+                  className=" md:py-0 md:px-4 relative -bottom-8 sm:-bottom-10 no-underline text-stone-700 uppercase transition-all ease-navMenuTF duration-navMenuDuration"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

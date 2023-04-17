@@ -1,3 +1,4 @@
+import Footer from "@/components/layout/footer";
 import { NextPage } from "next";
 import { useState } from "react";
 
@@ -21,15 +22,16 @@ const CharacterCalculator: NextPage = () => {
   };
   return (
     <>
-      <div className="max-h-max min-h-screen bg-[#f5f8fa] pt-24">
-        <div className="mx-auto min-w-[295px] px-10 sm:px-20">
-          <h1 className="title-clip-path absolute m-[-1px] grid h-[1px] w-[1px] items-center gap-2.5 overflow-hidden">
-            글자수 세기
-          </h1>
-          <div className="flex justify-between items-center">
-            <header>글자수 세기</header>
+      <div className="max-h-max h-full bg-white">
+        <div className="min-h-[calc(100vh-61px)] mx-auto min-w-[295px] px-10 sm:px-20 pt-24">
+          <header>
+            <h1 className="title-clip-path absolute m-[-1px] grid h-[1px] w-[1px] items-center gap-2.5 overflow-hidden">
+              글자수 세기
+            </h1>
+          </header>
+          <div className="flex justify-end pb-3">
             <button
-              className="bg-[#f6fdff] border flex justify-center items-center rounded-md h-8 px-3 text-md shadow-lg hover:bg-sky-100 disabled:pointer-events-none disabled:opacity-50"
+              className="bg-gray-50 border flex justify-center items-center rounded-md h-8 px-3 text-md shadow-lg hover:bg-gray-100 hover:font-bold disabled:pointer-events-none disabled:opacity-50"
               onClick={copy}
               disabled={!text}
             >
@@ -55,30 +57,31 @@ const CharacterCalculator: NextPage = () => {
               <textarea
                 id="text-calculator-area"
                 placeholder="글자수를 세고 싶은 내용을 입력하세요."
-                className="w-full h-64 p-4 mt-4 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                className="w-full h-64 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent"
                 rows={8}
                 cols={40}
                 onChange={(e) => {
                   setText(e.target.value);
                 }}
               ></textarea>
-              <div className=" py-2 space-y-1.5">
+              <div className="py-2 pt-6 space-y-2">
                 <p className="text-lg">
                   공백 포함 &nbsp;{" "}
-                  <span className="font-bold text-[#2169fa]">
+                  <span className="font-bold text-primary-600">
                     {text.length}
                   </span>
-                  자 | {charBytes} byte
+                  &nbsp; 자 | {charBytes} byte
                 </p>
                 <p className="text-lg">
                   공백 제외 &nbsp;{" "}
-                  <span className="font-bold text-[#2169fa]">{textTrim}</span>자
+                  <span className="font-bold text-[#bb3e64]">{textTrim}</span>  &nbsp;자
                   | {charBytes - (text.length - textTrim)} byte
                 </p>
               </div>
             </section>
           </main>
         </div>
+        <Footer />
       </div>
     </>
   );
