@@ -1,4 +1,5 @@
-import { initComma, useFilteredTable } from "@/helpers/calculateUtils";
+import { initComma } from "@/helpers/utils";
+// import {useFilteredTable} from "@/helpers/calculateUtils";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -14,17 +15,17 @@ const TaxTable = ({ tableArr, amount, isHome = false }: ITaxTableProps) => {
   const filteredTableArr = tableArr?.filter(
     (i: any) => i.income - 1100 < nearestNum && i.income + 1100 > nearestNum
   );
-  const filteredTableArrWithHighAmount = useFilteredTable(Number(amount));
+  // const filteredTableArrWithHighAmount = useFilteredTable(Number(amount));
 
-  const shortTable =
-    amount &&
-    (amount > 20000
-      ? filteredTableArrWithHighAmount.tableArr
-      : filteredTableArr);
+  // const shortTable =
+  //   amount &&
+  //   (amount > 20000
+  //     ? filteredTableArrWithHighAmount.tableArr
+  //     : filteredTableArr);
 
   return (
     <>
-      {amount && (
+      {/* {amount && (
         <section className="pt-8 pb-8">
           <div className="mx-auto mb-4 flex w-full text-lg font-medium text-[#0CA678]">
             <h2 className="shrink border-2 border-[#0CA678] bg-[#E6FCF5] py-0.5 px-2 text-center sm:min-w-[36%]">
@@ -88,7 +89,7 @@ const TaxTable = ({ tableArr, amount, isHome = false }: ITaxTableProps) => {
             })}
           </div>
         </section>
-      )}
+      )} */}
       <section
         className={
           isHome
