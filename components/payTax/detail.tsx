@@ -1,4 +1,4 @@
-import { initComma } from "@/helpers/calculateUtils";
+import { initComma } from "@/helpers/utils";
 
 interface ITaxDetailProps {
   transPrice: number;
