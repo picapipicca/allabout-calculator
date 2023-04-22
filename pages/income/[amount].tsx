@@ -178,7 +178,7 @@ const Salary: NextPage<IncomeResponseProps> = ({
           <main className="px-10">
             <IncomeItem amount={Number(newIncome)} incomeSet={incomeSet} />
           </main>
-          <aside className="pb-20 p-10">
+          <aside className="pb-20 p-14 pt-0">
             <Graph/>
           </aside>
           <main className="pb-16 px-10">

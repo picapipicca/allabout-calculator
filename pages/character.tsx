@@ -1,4 +1,5 @@
 import Footer from "@/components/layout/footer";
+import Graph from "@/components/payTax/graph";
 import { NextPage } from "next";
 import { useState } from "react";
 
@@ -74,8 +75,8 @@ const CharacterCalculator: NextPage = () => {
                 </p>
                 <p className="text-lg">
                   공백 제외 &nbsp;{" "}
-                  <span className="font-bold text-[#bb3e64]">{textTrim}</span>  &nbsp;자
-                  | {charBytes - (text.length - textTrim)} byte
+                  <span className="font-bold text-[#bb3e64]">{textTrim}</span>{" "}
+                  &nbsp;자 | {charBytes - (text.length - textTrim)} byte
                 </p>
               </div>
             </section>

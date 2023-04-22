@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { GetStaticProps } from "next";
@@ -6,9 +6,61 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/firebase";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Graph = (amountArray: any) => {
+const Graph = () => {
+  const [isLoad, setIsLoad] = useState(false);
+  const [amount, setAmount] = useState<number[]>();
+  useEffect(() => {
+    const fetchData = async () => {
+      let amountArray = [0, 0, 0, 0, 0, 0, 0, 0];
+      try {
+        const querySnapshot = await getDocs(collection(db, "income"));
+        querySnapshot.forEach((doc) => {
+          if (doc.data().amount < 20000000) {
+            amountArray[0] = amountArray[0] + doc.data().count;
+          } else if (
+            doc.data().amount < 40000000 &&
+            doc.data().amount >= 20000000
+          ) {
+            amountArray[1] = amountArray[1] + doc.data().count;
+          } else if (
+            doc.data().amount < 60000000 &&
+            doc.data().amount >= 40000000
+          ) {
+            amountArray[2] = amountArray[2] + doc.data().count;
+          } else if (
+            doc.data().amount < 80000000 &&
+            doc.data().amount >= 60000000
+          ) {
+            amountArray[3] = amountArray[3] + doc.data().count;
+          } else if (
+            doc.data().amount < 100000000 &&
+            doc.data().amount >= 80000000
+          ) {
+            amountArray[4] = amountArray[4] + doc.data().count;
+          } else if (
+            doc.data().amount < 120000000 &&
+            doc.data().amount >= 100000000
+          ) {
+            amountArray[5] = amountArray[5] + doc.data().count;
+          } else if (
+            doc.data().amount < 140000000 &&
+            doc.data().amount >= 120000000
+          ) {
+            amountArray = amountArray[6] + doc.data().count;
+          } else if (doc.data().amount >= 140000000) {
+            amountArray = [amountArray[7] + doc.data().count, ...amountArray];
+          }
+        });
+        setAmount(amountArray);
+        setIsLoad(true);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, []);
+  const dataSet = amount;
 
-  const dataSet = [7,9,13,5,3,1,4,0];
   const data = {
     labels: [
       "- 2000만원",
@@ -48,43 +100,7 @@ const Graph = (amountArray: any) => {
       },
     ],
   };
-  return (
-    <>
-      <Pie data={data} />
-    </>
-  );
+  return <>{amount && isLoad && <Pie data={data} />}</>;
 };
-export const getStaticProps: GetStaticProps = async () => {
-  let amountArray = [0, 0, 0, 0, 0, 0, 0, 0];
 
-  const querySnapshot = await getDocs(collection(db, "income"));
-  querySnapshot.forEach((doc) => {
-
-    console.log(doc.id,"=>",doc.data().count);
-    
-    // if (doc.data().count < 20000000) {
-    //   amountArray = [ amountArray[0]++,...amountArray,];
-    // } else if (doc.data().count < 40000000 && doc.data().count >= 20000000) {
-    //   amountArray= [amountArray[1]++,...amountArray];
-    // } else if (doc.data().count < 60000000 && doc.data().count >= 40000000) {
-    //   amountArray= [amountArray[2]++,...amountArray];
-    // } else if (doc.data().count < 80000000 && doc.data().count >= 60000000) {
-    //   amountArray= [amountArray[3]++,...amountArray];
-    // } else if (doc.data().count < 100000000 && doc.data().count >= 80000000) {
-    //   amountArray= [amountArray[4]++,...amountArray];
-    // } else if (doc.data().count < 120000000 && doc.data().count >= 100000000) {
-    //   amountArray= [amountArray[5]++,...amountArray];
-    // } else if (doc.data().count < 140000000 && doc.data().count >= 120000000) {
-    //   amountArray= [amountArray[6]++,...amountArray];
-    // } else if (doc.data().count >= 140000000) {
-    //   amountArray= [amountArray[7]++,...amountArray];
-    // }
-    // return amountArray
-  });
-  return {
-    props: {
-      amountArray: JSON.parse(JSON.stringify(amountArray)),
-    },
-  };
-};
 export default Graph;
