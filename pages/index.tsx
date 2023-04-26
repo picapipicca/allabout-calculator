@@ -2,16 +2,13 @@ import Input from "@/components/atoms/input";
 import type { NextPage } from "next";
 import { useState, useRef } from "react";
 import { useRouter } from "next/router";
-import { useTransIncomeLight } from "@/helpers/calculateUtils";
-import { unitChange } from "@/helpers/utils";
-import { flushSync } from "react-dom";
+import { unitChange } from "@/helpers/client/utils";
 import { NextSeo } from "next-seo";
 
 const Home: NextPage = () => {
   const router = useRouter();
   const [income, setIncome] = useState<number>();
   const [table, setTable] = useState<Boolean>(false);
-  const { tableArr } = useTransIncomeLight();
   const tableScrollRef = useRef<HTMLDivElement | null>();
 
   const onCalculateSalary = (e: any) => {
@@ -27,30 +24,29 @@ const Home: NextPage = () => {
     );
   };
 
-  const moveToTable = () => {
-    flushSync(() => {
-      setTable((prev) => !prev);
-    });
-    tableScrollRef?.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
   return (
     <div>
-      {/* <NextSeo
+      <NextSeo
         title="2023 연봉 실수령액 계산기"
-        description="2023년 내 연봉에서 뗄 거 다 떼면 통장에 꽂히는 실수령액은 얼마? 내 연봉부터 모든 연봉의 2023년 버전 실수령액을 지금 알아보세요."
-        canonical="https://salary.signalplanner.co.kr"
+        description="2023년 내 연봉에서 통장으로 들어오는 실수령액은 얼마일까요? 현재 내 연봉에서부터 연봉 협상시 퍼센트 상승 별 실수령액도 지금 알아보세요."
+        canonical="https://allcalculator.shop"
+        additionalLinkTags={
+          [
+            // {
+            //   rel: 'icon',
+            //   href: '/favicon.ico',
+            // },
+            // {
+            //   rel: 'manifest',
+            //   href: '/manifest.json',
+            // },
+          ]
+        }
         additionalMetaTags={[
           {
-            property: "dc:creator",
-            content: "habitfactory",
-          },
-          {
             name: "keywords",
-            content: "연봉 실수령액, 2023년 연봉 실수령액, 연봉 실수령",
+            content:
+              "연봉 실수령액, 2023년 연봉 실수령액, 연봉 실수령, 연봉 협상",
           },
           {
             httpEquiv: "x-ua-compatible",
@@ -60,21 +56,21 @@ const Home: NextPage = () => {
         openGraph={{
           type: "website",
           locale: "ko_KR",
-          url: 'https://salary.signalplanner.co.kr',
-          site_name: "시그널플래너",
+          url: "https://allcalculator.shop",
+          site_name: "올 어바웃 계산기",
           title: "2023년 연봉 실수령액 계산기",
           description:
-          '2023년 내 연봉에서 뗄 거 다 떼면 통장에 꽂히는 실수령액은 얼마? 내 연봉부터 모든 연봉의 2023년 버전 실수령액을 지금 알아보세요.',
+            "2023년 내 연봉에서 통장으로 들어오는 실수령액은 얼마일까요? 현재 내 연봉에서부터 연봉 협상시 퍼센트 상승 별 실수령액도 지금 알아보세요.",
           images: [
             {
-              url: '/signal-og-image.png',
+              url: "/allabout-og-image.png",
               width: 1200,
               height: 630,
               alt: "Salary Calculator Og Image Alt",
             },
           ],
         }}
-      /> */}
+      />
       <div className="max-h-max min-h-screen bg-white">
         <div className="mx-auto min-w-[295px] max-w-3xl px-10 sm:px-20 pt-48">
           <h1 className="title-clip-path absolute m-[-1px] grid h-[1px] w-[1px] items-center gap-2.5 overflow-hidden">
@@ -125,19 +121,8 @@ const Home: NextPage = () => {
               </button>
             </form>
           </section>
-
-          {/* <button
-            onClick={moveToTable}
-            className="mx-auto mt-8 block text-center text-gray-300 underline underline-offset-4"
-          >
-            전체표로보기
-          </button> */}
         </div>
       </div>
-
-      {/* <div ref={(el) => (tableScrollRef.current = el)}>
-        {table && <TaxTable tableArr={tableArr} isHome />}
-      </div> */}
     </div>
   );
 };

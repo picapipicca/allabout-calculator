@@ -3,7 +3,8 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Black_Han_Sans, Noto_Sans_KR } from "@next/font/google";
-import { cls } from "@/helpers/utils";
+import { cls } from "@/helpers/client/utils";
+import { SWRConfig } from "swr";
 
 const blackHanSans = Black_Han_Sans({
   subsets: ["latin"],
@@ -19,16 +20,20 @@ const notoSansKr = Noto_Sans_KR({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Head>
-        {/* <title></title>
+    <SWRConfig
+      value={{ fetcher: (url: string) => fetch(url).then((res) => res.json()) }}
+    >
+      <Layout>
+        <Head>
+          {/* <title></title>
         <meta name="naver-site-verification" content="2a38d93696d0a16b1f97da7c83abe46194d8cf40" />
         <meta name="description" content="Income tax calculator 2023 - salary after tax"/>
         <meta name="viewport" content="initial-scale=1.0, width=devide-width" /> */}
-      </Head>
-      <main className={cls(blackHanSans.variable, notoSansKr.variable)}>
-        <Component {...pageProps} />
-      </main>
-    </Layout>
+        </Head>
+        <main className={cls(blackHanSans.variable, notoSansKr.variable)}>
+          <Component {...pageProps} />
+        </main>
+      </Layout>
+    </SWRConfig>
   );
 }
