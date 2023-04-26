@@ -2,6 +2,7 @@ import Footer from "@/components/layout/footer";
 import Graph from "@/components/payTax/graph";
 import { NextPage } from "next";
 import { useState } from "react";
+import { NextSeo } from "next-seo";
 
 const CharacterCalculator: NextPage = () => {
   const [text, setText] = useState<string>("");
@@ -24,6 +25,51 @@ const CharacterCalculator: NextPage = () => {
   return (
     <>
       <div className="max-h-max h-full bg-white">
+        <NextSeo
+          title="글자수 세기"
+          description="입력한 글자의 개수를 바로 확인하여 이력서 및 자기 소개서의 글자수를 맞춰보세요."
+          canonical="https://allcalculator.shop/character"
+          additionalLinkTags={
+            [
+              // {
+              //   rel: 'icon',
+              //   href: '/favicon.ico',
+              // },
+              // {
+              //   rel: 'manifest',
+              //   href: '/manifest.json',
+              // },
+            ]
+          }
+          additionalMetaTags={[
+            {
+              name: "keywords",
+              content:
+                "글자수 세기,글자수,글자수 제한,이력서, 자기소개서, 취업 이력서",
+            },
+            {
+              httpEquiv: "x-ua-compatible",
+              content: "IE=edge; chrome=1",
+            },
+          ]}
+          openGraph={{
+            type: "website",
+            locale: "ko_KR",
+            url: "https://allcalculator.shop/character",
+            site_name: "올 어바웃 계산기",
+            title: "글자수 세기",
+            description:
+              "입력한 글자의 개수를 바로 확인하여 이력서 및 자기 소개서의 글자수를 맞춰보세요.",
+            images: [
+              {
+                url: "/character-og-image.png",
+                width: 1200,
+                height: 630,
+                alt: "Count Character Og Image Alt",
+              },
+            ],
+          }}
+        />
         <div className="min-h-[calc(100vh-61px)] mx-auto min-w-[295px] px-10 sm:px-20 pt-24">
           <header>
             <h1 className="title-clip-path absolute m-[-1px] grid h-[1px] w-[1px] items-center gap-2.5 overflow-hidden">

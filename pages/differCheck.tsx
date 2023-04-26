@@ -1,10 +1,8 @@
 import Footer from "@/components/layout/footer";
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
-import ReactDiffViewer, {
-  DiffMethod,
-  ReactDiffViewerProps,
-} from "react-diff-viewer-continued";
+import { NextSeo } from "next-seo";
+import { useState } from "react";
+import ReactDiffViewer, { DiffMethod } from "react-diff-viewer-continued";
 
 const DifferCheck: NextPage = () => {
   const [oldCode, setOldCode] = useState("");
@@ -22,6 +20,51 @@ const DifferCheck: NextPage = () => {
 
   return (
     <div className="mx-auto h-full relative">
+      <NextSeo
+        title="글 다른곳 찾기"
+        description="입력한 글이나 코드의 다른곳을 보기쉽게 확인하여 쉽고 빠르게 바로 수정하세요."
+        canonical="https://allcalculator.shop/differCheck"
+        additionalLinkTags={
+          [
+            // {
+            //   rel: 'icon',
+            //   href: '/favicon.ico',
+            // },
+            // {
+            //   rel: 'manifest',
+            //   href: '/manifest.json',
+            // },
+          ]
+        }
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content:
+              "글 비교, 텍스트 비교, 문장 비교 , 글자 비교 , 글 비교 툴 , 코드 비교",
+          },
+          {
+            httpEquiv: "x-ua-compatible",
+            content: "IE=edge; chrome=1",
+          },
+        ]}
+        openGraph={{
+          type: "website",
+          locale: "ko_KR",
+          url: "https://allcalculator.shop/differCheck",
+          site_name: "올 어바웃 계산기",
+          title: "글 다른곳 찾기",
+          description:
+            "입력한 글이나 코드의 다른곳을 보기쉽게 확인하여 쉽고 빠르게 바로 수정하세요.",
+          images: [
+            {
+              url: "/diffChecker-og-image.png",
+              width: 1200,
+              height: 630,
+              alt: "Different Text Og Image Alt",
+            },
+          ],
+        }}
+      />
       <div className="min-h-[calc(100vh-61px)] mx-auto w-full items-center sm:min-w-[295px] px-10 sm:px-20 pt-24">
         <h1 className="title-clip-path absolute m-[-1px] grid h-[1px] w-[1px] items-center gap-2.5 overflow-hidden">
           text difference checker
@@ -96,16 +139,12 @@ const DifferCheck: NextPage = () => {
             </section>
           ) : oldCode === "" && newCode === "" && toggle ? (
             <section>
-              {/* <div className="py-4 text-center">
-                  <span className="text-red-500 font-bold text-lg">
-                    비교할 문장을 입력해주세요{" "}
-                  </span>
-                </div> */}
               <div
                 className="p-4 my-10 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                 role="alert"
               >
-                <span className="font-bold">입력칸을 확인해주세요!</span> <br/>비교할 문장을 입력해주세요.
+                <span className="font-bold">입력칸을 확인해주세요!</span> <br />
+                비교할 문장을 입력해주세요.
               </div>
             </section>
           ) : null}

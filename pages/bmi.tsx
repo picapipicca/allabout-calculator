@@ -2,6 +2,7 @@ import Input from "@/components/atoms/input";
 import BmiDetail from "@/components/bmi/detail";
 import Footer from "@/components/layout/footer";
 import { NextPage } from "next";
+import { NextSeo } from "next-seo";
 import { useState } from "react";
 
 const Bmi: NextPage = () => {
@@ -32,6 +33,51 @@ const Bmi: NextPage = () => {
 
   return (
     <div className="max-h-max h-full bg-white">
+      <NextSeo
+        title="체지방률(BMI) 계산기"
+        description="내 키에서 적정 몸무게는 몇 키로 일까요? 체지방률(BMI) 계산기로 현재 내 체지방률과 적정 체지방률,적정 몸무게를 확인해보세요."
+        canonical="https://allcalculator.shop/bmi"
+        additionalLinkTags={
+          [
+            // {
+            //   rel: 'icon',
+            //   href: '/favicon.ico',
+            // },
+            // {
+            //   rel: 'manifest',
+            //   href: '/manifest.json',
+            // },
+          ]
+        }
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content:
+              "체지방 계산기, 체질량지수, BMI 계산기, 비만 자가진단, 적정 체지방률,다이어트 계산기,적정 몸무게",
+          },
+          {
+            httpEquiv: "x-ua-compatible",
+            content: "IE=edge; chrome=1",
+          },
+        ]}
+        openGraph={{
+          type: "website",
+          locale: "ko_KR",
+          url: "https://allcalculator.shop/bmi",
+          site_name: "올 어바웃 계산기",
+          title: "체지방률(BMI) 계산기",
+          description:
+            "내 키에서 적정 몸무게는 몇 키로 일까요? 체지방률(BMI) 계산기로 현재 내 체지방률과 적정 체지방률,적정 몸무게를 확인해보세요.",
+          images: [
+            {
+              url: "/bmi-og-image.png",
+              width: 1200,
+              height: 630,
+              alt: "Bmi Calculator Og Image Alt",
+            },
+          ],
+        }}
+      />
       <div className="min-h-[calc(100vh-61px)] mx-auto min-w-[295px] px-10 sm:px-20 pt-24">
         <h1 className="title-clip-path absolute m-[-1px] grid h-[1px] w-[1px] items-center gap-2.5 overflow-hidden">
           비만도 계산기
