@@ -1,67 +1,70 @@
 import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
-import { GetStaticProps } from "next";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "@/firebase";
+import { Amount } from "@prisma/client";
+import useSWR from "swr";
+
 ChartJS.register(ArcElement, Tooltip, Legend);
-
+interface GraphProps {
+  ok: boolean;
+  amounts: Amount[];
+}
 const Graph = () => {
-  const [isLoad, setIsLoad] = useState(false);
-  const [amount, setAmount] = useState<number[]>();
-  useEffect(() => {
-    const fetchData = async () => {
-      let amountArray = [0, 0, 0, 0, 0, 0, 0, 0];
-      try {
-        const querySnapshot = await getDocs(collection(db, "income"));
-        querySnapshot.forEach((doc) => {
-          if (doc.data().amount < 20000000) {
-            amountArray[0] = amountArray[0] + doc.data().count;
-          } else if (
-            doc.data().amount < 40000000 &&
-            doc.data().amount >= 20000000
-          ) {
-            amountArray[1] = amountArray[1] + doc.data().count;
-          } else if (
-            doc.data().amount < 60000000 &&
-            doc.data().amount >= 40000000
-          ) {
-            amountArray[2] = amountArray[2] + doc.data().count;
-          } else if (
-            doc.data().amount < 80000000 &&
-            doc.data().amount >= 60000000
-          ) {
-            amountArray[3] = amountArray[3] + doc.data().count;
-          } else if (
-            doc.data().amount < 100000000 &&
-            doc.data().amount >= 80000000
-          ) {
-            amountArray[4] = amountArray[4] + doc.data().count;
-          } else if (
-            doc.data().amount < 120000000 &&
-            doc.data().amount >= 100000000
-          ) {
-            amountArray[5] = amountArray[5] + doc.data().count;
-          } else if (
-            doc.data().amount < 140000000 &&
-            doc.data().amount >= 120000000
-          ) {
-            amountArray = amountArray[6] + doc.data().count;
-          } else if (doc.data().amount >= 140000000) {
-            amountArray = [amountArray[7] + doc.data().count, ...amountArray];
-          }
-        });
-        setAmount(amountArray);
-        setIsLoad(true);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchData();
-  }, []);
-  const dataSet = amount;
+  const { data } = useSWR<GraphProps>(`/api/amount`);
+// console.log(data)
+  // const amountArray = data?.amounts.reduce(
+  //   (acc, current, index, arr) => {
+  //     let previousAmount = index === 0 ? 0 : arr[index - 1].amount;
+  //     let currentAmount = current.amount;
+  //     let currentCount = current.count;
 
-  const data = {
+  //     // Add count to existing index in amountArray
+  //     let currentIndex = Math.floor(currentAmount / 20000000);
+  //     if (currentIndex < acc.length) {
+  //       acc[currentIndex] += currentCount;
+  //     }
+
+  //     // Add count to additional indexes in amountArray
+  //     while (
+  //       currentAmount - previousAmount >= 20000000 &&
+  //       previousAmount < 140000000 &&
+  //       currentIndex < acc.length - 1
+  //     ) {
+  //       currentIndex++;
+  //       acc[currentIndex] += currentCount;
+  //       previousAmount += 20000000;
+  //     }
+
+  //     return acc;
+  //   },
+  //   [0, 0, 0, 0, 0, 0, 0, 0]
+  // );
+  // console.log(amountArray);
+  // const dataSet = data?.amounts.map((doc) => {
+  //   let dataArray = [0, 0, 0, 0, 0, 0, 0, 0];
+  //   if (doc.amount < 20000000) {
+  //     dataArray[0] = dataArray[0] + doc.count;
+  //   } else if (doc.amount < 40000000 && doc.amount >= 20000000) {
+  //     dataArray[1] = dataArray[1] + doc.count;
+  //   } else if (doc.amount < 60000000 && doc.amount >= 40000000) {
+  //     dataArray[2] = dataArray[2] + doc.count;
+  //   } else if (doc.amount < 80000000 && doc.amount >= 60000000) {
+  //     dataArray[3] = dataArray[3] + doc.count;
+  //   } else if (doc.amount < 100000000 && doc.amount >= 80000000) {
+  //     dataArray[4] = dataArray[4] + doc.count;
+  //   } else if (doc.amount < 120000000 && doc.amount >= 100000000) {
+  //     dataArray[5] = dataArray[5] + doc.count;
+  //   } else if (doc.amount < 140000000 && doc.amount >= 120000000) {
+  //     dataArray[6] = dataArray[6] + doc.count;
+  //   } else if (doc.amount >= 140000000) {
+  //     dataArray[7] = dataArray[7] + doc.count;
+  //   }
+  //   return dataArray
+  // });
+  // console.log("dataSet", dataSet);
+  const dataSet = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  const graphData = {
     labels: [
       "- 2000만원",
       "2000-4000만원",
@@ -100,7 +103,11 @@ const Graph = () => {
       },
     ],
   };
-  return <>{amount && isLoad && <Pie data={data} />}</>;
+  return data ? (
+    <>
+      <Pie data={graphData} />
+    </>
+  ) : null;
 };
 
 export default Graph;
