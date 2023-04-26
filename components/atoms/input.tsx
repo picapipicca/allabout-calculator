@@ -7,7 +7,6 @@ interface InputProps {
   onChangeHandler?: (...args: any) => void;
   name?: string;
   value?: any;
-  defaultValueKey?: any;
   simple?: boolean;
   readOnly?: boolean;
   max?: number;
@@ -21,7 +20,6 @@ const Input = ({
   rightInnerLabel,
   placeholder,
   value,
-  defaultValueKey,
   simple = false,
   leftInnerLabel,
   max,
@@ -42,11 +40,10 @@ const Input = ({
           <span className={"text-lg text-gray-500"}>{leftInnerLabel}</span>
         </div>
         <input
+          value={value}
           max={max}
           readOnly={readOnly}
-          key={defaultValueKey}
           id={name}
-          defaultValue={value}
           onChange={onChangeHandler}
           placeholder={placeholder}
           min={"0"}
