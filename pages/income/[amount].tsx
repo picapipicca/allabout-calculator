@@ -1,27 +1,17 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { useRouter } from "next/router";
-import { useState, useMemo, useEffect } from "react";
-import { useTransIncomeLight, useTransIncome } from "@/helpers/calculateUtils";
-import { initComma, paginate, unitChange } from "@/helpers/utils";
+import { useState, useEffect } from "react";
+import {
+  useTransIncomeLight,
+  useTransIncome,
+} from "@/helpers/client/calculateUtils";
+import { paginate, unitChange } from "@/helpers/client/utils";
+import { TaxDetail, TaxTable, Graph } from "@/components/payTax";
 import Footer from "@/components/layout/footer";
 import Input from "@/components/atoms/input";
-import AmountSkeleton from "@/components/component/amountSkeleton";
-import IncomeItem from "@/components/atoms/incomeItem";
-import Pagination from "@/components/component/pagination";
+import AmountSkeleton from "@/components/amountSkeleton";
+import Pagination from "@/components/pagination";
 import { NextSeo } from "next-seo";
-import { flushSync } from "react-dom";
-import {
-  addDoc,
-  collection,
-  where,
-  query,
-  getDocs,
-  updateDoc,
-  doc,
-  getDoc,
-} from "firebase/firestore";
-import { db } from "@/firebase";
-import Graph from "@/components/payTax/graph";
 
 interface IncomeResponseProps {
   income: number;
@@ -38,7 +28,6 @@ const Salary: NextPage<IncomeResponseProps> = ({
   const [pageSize, pageBlockSize] = [15, 8];
   const [currentPage, setCurrentPage] = useState(1);
   const paginatedTable = paginate(tableArr, currentPage, pageSize);
-  // const longTableScrollRef = useRef<HTMLDivElement | null>();
   const [newIncome, setNewIncome] = useState(0);
   const [percent, setPercent] = useState<number>(0);
   const percentIncomeData = useTransIncome(Number(newIncome));
@@ -72,6 +61,7 @@ const Salary: NextPage<IncomeResponseProps> = ({
         pathname: "/income/[amount]",
         query: { amount: `${newIncome}` },
       });
+    setPercent(0);
   };
   useEffect(() => {
     setNewIncome(income + income * percent * 0.01);
@@ -84,47 +74,44 @@ const Salary: NextPage<IncomeResponseProps> = ({
   return (
     <>
       <div className="mx-auto sm:max-w-xl md:max-w-2xl h-full">
-        {/* <NextSeo
-        title={`2023 연봉 ${income}만원 실수령액`}
-        description={`2023년 연봉 ${income}만원 실수령액,얼마일까요? ${income}만원 실수령액부터, 모든 연봉의 2023년 버전 실수령액을 한눈에 표로 확인해보세요.`}
-        canonical={`https://salary.signalplanner.co.kr/income/${income}`}
-        additionalMetaTags={[
-          {
-            property: "dc:creator",
-            content: "habitfactory",
-          },
-          {
-            name: "keywords",
-            content: "연봉 실수령액, 2023년 연봉 실수령액, 연봉 실수령",
-          },
-          {
-            httpEquiv: "x-ua-compatible",
-            content: "IE=edge; chrome=1",
-          },
-        ]}
-        openGraph={{
-          type: "website",
-          locale: "ko_KR",
-          url: `https://salary.signalplanner.co.kr/income/${income}`,
-          site_name: "시그널플래너",
-          title: `2023년 연봉 ${income}만원 실수령액`,
-          description: `2023년 연봉 ${income}만원 실수령액,얼마일까요? ${income}만원 실수령액부터, 모든 연봉의 2023년 버전 실수령액을 한눈에 표로 확인해보세요.`,
-          images: [
+        <NextSeo
+          title={`2023 연봉 ${income}만원 실수령액`}
+          description={`2023년 연봉 ${income}만원 실수령액,얼마일까요? ${income}만원 실수령액부터, 여기서 5% 오르면 내 연봉은 얼마인지 확인해보세요.`}
+          canonical={`https://allcalculator.shop/income/${income}`}
+          additionalMetaTags={[
             {
-              url: "/signal-og-image.png",
-              width: 1200,
-              height: 630,
-              alt: "Salary Calculator Og Image Alt",
+              name: "keywords",
+              content:
+                "연봉 실수령액, 2023년 연봉 실수령액, 연봉 실수령, 연봉 협상",
             },
-          ],
-        }}
-      /> */}
+            {
+              httpEquiv: "x-ua-compatible",
+              content: "IE=edge; chrome=1",
+            },
+          ]}
+          openGraph={{
+            type: "website",
+            locale: "ko_KR",
+            url: `https://allcalculator.shop/income/${income}`,
+            site_name: "올 어바웃 계산기",
+            title: `2023년 연봉 ${income}만원 실수령액`,
+            description: `2023년 연봉 ${income}만원 실수령액,얼마일까요? ${income}만원 실수령액부터, 여기서 5% 오르면 내 연봉은 얼마인지 확인해보세요.`,
+            images: [
+              {
+                url: "/allabout-og-image.png",
+                width: 1200,
+                height: 630,
+                alt: "Salary Calculator Og Image Alt",
+              },
+            ],
+          }}
+        />
 
         <div className="min-h-full mx-auto w-full items-center sm:min-w-[295px] sm:max-w-[80%] md:max-w-lg">
           <form className="my-4 flex mt-24 px-10">
             <div className="w-full">
               <Input
-                value={newIncome ? newIncome : income}
+                value={newIncome}
                 leftInnerLabel="연봉"
                 simple
                 isRequired
@@ -176,50 +163,19 @@ const Salary: NextPage<IncomeResponseProps> = ({
           </div>
           <br />
           <main className="px-10">
-            <IncomeItem amount={Number(newIncome)} incomeSet={incomeSet} />
+            <TaxDetail amount={Number(newIncome)} incomeSet={incomeSet} />
           </main>
           <aside className="pb-20 p-14 pt-0">
-            <Graph/>
+            <h2 className="mb-8 text-xl font-bold text-black">
+              사람들이 많이 검색해본 연봉은?
+            </h2>
+            <Graph />
           </aside>
           <main className="pb-16 px-10">
-            <h2 className="mb-8 text-lg font-medium text-black">
+            <h2 className="mb-8 text-xl font-bold text-black">
               연봉별 실수령액 한눈에 보기
             </h2>
-
-            <div className="mx-auto grid w-full grid-cols-[0.8fr_1fr_1fr] sm:grid-cols-[0.9fr_1fr_1fr] bg-white py-4 text-sm font-bold">
-              <span className="pl-2">연봉</span>
-              <span className={"text-end "}>월 실수령액</span>
-              <span className={"pr-2 text-end text-gray-500 "}>월 공제액</span>
-            </div>
-
-            <div className="pb-10">
-              {paginatedTable.map((item: any, idx: number) => {
-                return (
-                  <div
-                    onClick={(e) => {
-                      e.preventDefault();
-                      router.push(
-                        {
-                          pathname: `/income/${item.income}`,
-                          query: { amount: `${item.income}` },
-                        },
-                        `/income/${item.income}`
-                      );
-                    }}
-                    key={idx}
-                    className="cursor-pointer hover:bg-primary-50 grid grid-cols-3 gap-3 border-t-2 py-2 text-[13px] font-medium md:gap-10"
-                  >
-                    <span className="pl-2">{unitChange(item.income)}원</span>
-                    <span className="flex items-end justify-end text-[#07498f] ">
-                      {initComma(item.actualMonthSalary)}
-                    </span>
-                    <span className="pr-2 flex justify-end font-normal text-gray-500 ">
-                      {initComma(item.amount)}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+            <TaxTable paginatedTable={paginatedTable} setPercent={setPercent} />
             <Pagination
               pageBlockSize={pageBlockSize}
               items={tableArr.length}
@@ -240,56 +196,33 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       props: {},
     };
   }
+
   const income = Number(ctx.params?.amount);
   const taxData = useTransIncome(Number(income));
   const { tableArr } = useTransIncomeLight();
 
-  const q = query(
-    collection(db, "income"),
-    where("amount", "==", ctx.params?.amount)
-  );
-  const docSnap = await getDocs(q);
-  if (docSnap.size > 0) {
-    docSnap.forEach(async (docIncome) => {
-      const amountRef = doc(db, "income", docIncome.id);
-      await updateDoc(amountRef, {
-        count: docIncome.data().count + 1,
-      });
+  const isAmount = await client?.amount.findFirst({
+    where: {
+      amount: income,
+    },
+    select: {
+      id: true,
+      count: true,
+    },
+  });
+  if (!isAmount) {
+    await client?.amount.create({
+      data: {
+        amount: income,
+        count: 1,
+      },
     });
   } else {
-    try {
-      const docRef = await addDoc(collection(db, "income"), {
-        amount: ctx?.params?.amount,
-        count: 1,
-      });
-      
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
+    await client?.amount.update({
+      where: { id: isAmount?.id },
+      data: { count: isAmount?.count + 1 },
+    });
   }
-
-  // const docRef = doc(db, "income", docSnap.data());
-  // // const docSnap = await getDoc(docRef);
-
-  // if (docSnap.exists()) {
-  //   docSnap.data();
-  //   // querySnapshot.forEach(async (docAmount) => {
-  //   //   const amountRef = doc(db, "income", docAmount.id);
-  //   //   await updateDoc(amountRef, {
-  //   //     count: docAmount.data().count + 1,
-  //   //   });
-  //   // });
-  // } else {
-  //   try {
-  //     const docRef = await addDoc(collection(db, "income"), {
-  //       amount: ctx?.params?.amount,
-  //       count: 1,
-  //     });
-  //     console.log("도큐먼트 아이디: ", docRef.id);
-  //   } catch (e) {
-  //     console.error("Error adding document: ", e);
-  //   }
-  // }
 
   return {
     props: {
