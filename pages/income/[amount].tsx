@@ -201,28 +201,28 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const taxData = useTransIncome(Number(income));
   const { tableArr } = useTransIncomeLight();
 
-  const isAmount = await client?.amount.findFirst({
-    where: {
-      amount: income,
-    },
-    select: {
-      id: true,
-      count: true,
-    },
-  });
-  if (!isAmount) {
-    await client?.amount.create({
-      data: {
-        amount: income,
-        count: 1,
-      },
-    });
-  } else {
-    await client?.amount.update({
-      where: { id: isAmount?.id },
-      data: { count: isAmount?.count + 1 },
-    });
-  }
+  // const isAmount = await client?.amount.findFirst({
+  //   where: {
+  //     amount: income,
+  //   },
+  //   select: {
+  //     id: true,
+  //     count: true,
+  //   },
+  // });
+  // if (!isAmount) {
+  //   await client?.amount.create({
+  //     data: {
+  //       amount: income,
+  //       count: 1,
+  //     },
+  //   });
+  // } else {
+  //   await client?.amount.update({
+  //     where: { id: isAmount?.id },
+  //     data: { count: isAmount?.count + 1 },
+  //   });
+  // }
 
   return {
     props: {
