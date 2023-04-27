@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { Amount } from "@prisma/client";
@@ -11,58 +10,16 @@ interface GraphProps {
 }
 const Graph = () => {
   const { data } = useSWR<GraphProps>(`/api/amount`);
-// console.log(data)
-  // const amountArray = data?.amounts.reduce(
-  //   (acc, current, index, arr) => {
-  //     let previousAmount = index === 0 ? 0 : arr[index - 1].amount;
-  //     let currentAmount = current.amount;
-  //     let currentCount = current.count;
 
-  //     // Add count to existing index in amountArray
-  //     let currentIndex = Math.floor(currentAmount / 20000000);
-  //     if (currentIndex < acc.length) {
-  //       acc[currentIndex] += currentCount;
-  //     }
-
-  //     // Add count to additional indexes in amountArray
-  //     while (
-  //       currentAmount - previousAmount >= 20000000 &&
-  //       previousAmount < 140000000 &&
-  //       currentIndex < acc.length - 1
-  //     ) {
-  //       currentIndex++;
-  //       acc[currentIndex] += currentCount;
-  //       previousAmount += 20000000;
-  //     }
-
-  //     return acc;
-  //   },
-  //   [0, 0, 0, 0, 0, 0, 0, 0]
-  // );
-  // console.log(amountArray);
-  // const dataSet = data?.amounts.map((doc) => {
-  //   let dataArray = [0, 0, 0, 0, 0, 0, 0, 0];
-  //   if (doc.amount < 20000000) {
-  //     dataArray[0] = dataArray[0] + doc.count;
-  //   } else if (doc.amount < 40000000 && doc.amount >= 20000000) {
-  //     dataArray[1] = dataArray[1] + doc.count;
-  //   } else if (doc.amount < 60000000 && doc.amount >= 40000000) {
-  //     dataArray[2] = dataArray[2] + doc.count;
-  //   } else if (doc.amount < 80000000 && doc.amount >= 60000000) {
-  //     dataArray[3] = dataArray[3] + doc.count;
-  //   } else if (doc.amount < 100000000 && doc.amount >= 80000000) {
-  //     dataArray[4] = dataArray[4] + doc.count;
-  //   } else if (doc.amount < 120000000 && doc.amount >= 100000000) {
-  //     dataArray[5] = dataArray[5] + doc.count;
-  //   } else if (doc.amount < 140000000 && doc.amount >= 120000000) {
-  //     dataArray[6] = dataArray[6] + doc.count;
-  //   } else if (doc.amount >= 140000000) {
-  //     dataArray[7] = dataArray[7] + doc.count;
-  //   }
-  //   return dataArray
-  // });
-  // console.log("dataSet", dataSet);
-  const dataSet = [1, 2, 3, 4, 5, 6, 7, 8];
+  const dataArray = data?.amounts.reduce(
+    (acc, curr) => {
+      const index =
+        curr.amount < 140000000 ? Math.floor(curr.amount / 20000000) : 7;
+      acc[index] += curr.count;
+      return acc;
+    },
+    [0, 0, 0, 0, 0, 0, 0, 0]
+  );
 
   const graphData = {
     labels: [
@@ -78,7 +35,7 @@ const Graph = () => {
     datasets: [
       {
         label: "검색한 %",
-        data: dataSet,
+        data: dataArray,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
