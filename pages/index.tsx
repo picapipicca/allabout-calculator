@@ -8,8 +8,6 @@ import { NextSeo } from "next-seo";
 const Home: NextPage = () => {
   const router = useRouter();
   const [income, setIncome] = useState<number>();
-  const [table, setTable] = useState<Boolean>(false);
-  const tableScrollRef = useRef<HTMLDivElement | null>();
 
   const onCalculateSalary = (e: any) => {
     e.preventDefault();
