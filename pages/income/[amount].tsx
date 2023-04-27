@@ -63,6 +63,19 @@ const Salary: NextPage<IncomeResponseProps> = ({
       });
     setPercent(0);
   };
+  const mutate = (income: number) => {
+    fetch("/api/amount", {
+      method: "POST",
+      body: JSON.stringify({ income }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json().catch(() => {}));
+  };
+  useEffect(() => {
+    mutate(income);
+  }, [income]);
+
   useEffect(() => {
     setNewIncome(income + income * percent * 0.01);
   }, [percent, income]);
@@ -200,29 +213,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const income = Number(ctx.params?.amount);
   const taxData = useTransIncome(Number(income));
   const { tableArr } = useTransIncomeLight();
-
-  // const isAmount = await client?.amount.findFirst({
-  //   where: {
-  //     amount: income,
-  //   },
-  //   select: {
-  //     id: true,
-  //     count: true,
-  //   },
-  // });
-  // if (!isAmount) {
-  //   await client?.amount.create({
-  //     data: {
-  //       amount: income,
-  //       count: 1,
-  //     },
-  //   });
-  // } else {
-  //   await client?.amount.update({
-  //     where: { id: isAmount?.id },
-  //     data: { count: isAmount?.count + 1 },
-  //   });
-  // }
 
   return {
     props: {
