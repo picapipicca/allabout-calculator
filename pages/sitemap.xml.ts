@@ -1,4 +1,4 @@
-import client from "@/helpers/server/client";
+import useSWR from 'swr';
 
 const getDate = new Date().toISOString();
 const DOMAIN = "https://allcalculator.shop";
@@ -30,24 +30,23 @@ export async function getServerSideProps(res: any, params: string) {
     };
   });
 
-  const dynamicAmount = await client.amount.findMany({
-    select: {
-      amount: true,
-    },
+  const { data } = useSWR(`/api/amount`);
+  
+  const dynamicAmountPaths = data?.amounts
+  ?.filter(
+    (path:any) =>
+      (path.amount <= 200000000 && path.amount % 1000000 !== 0) ||
+      path.amount > 200000000
+  )
+  .map((data:any) => {
+    return {
+      location: `/income/${data.amount.toString()}`,
+      lastMod: getDate,
+    };
   });
-  const dynamicAmountPaths = dynamicAmount
-    ?.filter(
-      (path) =>
-        (path.amount <= 200000000 && path.amount % 1000000 !== 0) ||
-        path.amount > 200000000
-    )
-    .map((data) => {
-      return {
-        location: `/income/${data.amount.toString()}`,
-        lastMod: getDate,
-      };
-    });
-  const data = {
+
+  
+  const datas = {
     pages: [
       {
         location: "/", //default url
@@ -71,7 +70,7 @@ export async function getServerSideProps(res: any, params: string) {
     ],
   };
   res.setHeader("Content-Type", "text/xml");
-  res.write(generateSitemap(data, DOMAIN));
+  res.write(generateSitemap(datas, DOMAIN));
   res.end();
   return {
     props: {},
