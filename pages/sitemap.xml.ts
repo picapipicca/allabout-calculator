@@ -35,15 +35,18 @@ export async function getServerSideProps(res: any, params: string) {
       amount: true,
     },
   });
-  const dynamicAmountPaths = dynamicAmount?.map((path) => {
-    console.log(path);
-    if (path.amount / 100 !== 0) {
+  const dynamicAmountPaths = dynamicAmount
+    ?.filter(
+      (path) =>
+        (path.amount <= 200000000 && path.amount % 1000000 !== 0) ||
+        path.amount > 200000000
+    )
+    .map((data) => {
       return {
-        location: `/income/${path.amount.toString()}`,
+        location: `/income/${data.amount.toString()}`,
         lastMod: getDate,
       };
-    }
-  });
+    });
   const data = {
     pages: [
       {
