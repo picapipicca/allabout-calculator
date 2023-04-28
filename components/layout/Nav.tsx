@@ -9,7 +9,7 @@ const Nav = () => {
       <div className="fixed top-0 left-0 w-full flex justify-between items-center p-4 pl-8 bg-white">
         {/* 로고 */}
         <div className="no-underline text-black font-bold text-2xl sm:text-4xl font-blackHanSans">
-          올어바웃 계산기
+          <Link href={"/"}>올어바웃 계산기</Link>
         </div>
         {/* x 표시 */}
         <div
