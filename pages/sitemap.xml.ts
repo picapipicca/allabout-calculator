@@ -1,11 +1,11 @@
-import useSWR from "swr";
+import client from "@/helpers/server/client";
 
 const getDate = new Date().toISOString();
 const DOMAIN = "https://allcalculator.shop";
 
-const generateSitemap = (data: any, domain: string) => {
+const generateSitemap = (datas: any, domain: string) => {
   let xml = "";
-  data.pages.map((page: any) => {
+  datas.pages.map((page: any) => {
     xml += `<url>
       <loc>${domain + page.location}</loc>
       <lastmod>${page.lastMod}</lastmod>
@@ -22,8 +22,13 @@ const generateSitemap = (data: any, domain: string) => {
 };
 
 export async function getServerSideProps({ res }: any) {
-  const { data } = useSWR(`/api/amount`);
-  const arr = Array.from({ length: 191 }, (x, i) => (i + 10) * 100);
+  const dynamicAmount = await client.amount.findMany({
+    select: {
+      amount: true,
+    },
+  });
+  
+  const arr = Array.from({ length: 291 }, (x, i) => (i + 10) * 1000000);
   const amountPaths = arr.map((amount) => {
     return {
       location: `/income/${amount.toString()}`,
@@ -31,12 +36,11 @@ export async function getServerSideProps({ res }: any) {
     };
   });
 
-
-  const dynamicAmountPaths = data?.amounts
+  const dynamicAmountPaths = dynamicAmount
     ?.filter(
       (path: any) =>
-        (path.amount <= 200000000 && path.amount % 1000000 !== 0) ||
-        path.amount > 200000000
+        (path.amount <= 300000000 && path.amount % 1000000 !== 0) ||
+        path.amount > 300000000
     )
     .map((data: any) => {
       return {

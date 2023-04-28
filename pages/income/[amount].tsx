@@ -224,7 +224,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
-  let arr: any = Array.from({ length: 190 }, (x, i) => (i + 10) * 100);
+   let arr: any = Array.from({ length: 191 }, (x, i) => (i + 10) * 1000000);
   const paths = arr.map((nums: string) => ({
     params: { amount: nums.toString() },
   }));
