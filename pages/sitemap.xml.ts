@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import useSWR from "swr";
 
 const getDate = new Date().toISOString();
 const DOMAIN = "https://allcalculator.shop";
@@ -21,7 +21,8 @@ const generateSitemap = (data: any, domain: string) => {
     </urlset>`;
 };
 
-export async function getServerSideProps(res: any, params: string) {
+export async function getServerSideProps({ res }: any) {
+  const { data } = useSWR(`/api/amount`);
   const arr = Array.from({ length: 191 }, (x, i) => (i + 10) * 100);
   const amountPaths = arr.map((amount) => {
     return {
@@ -30,22 +31,19 @@ export async function getServerSideProps(res: any, params: string) {
     };
   });
 
-  const { data } = useSWR(`/api/amount`);
-  
-  const dynamicAmountPaths = data?.amounts
-  ?.filter(
-    (path:any) =>
-      (path.amount <= 200000000 && path.amount % 1000000 !== 0) ||
-      path.amount > 200000000
-  )
-  .map((data:any) => {
-    return {
-      location: `/income/${data.amount.toString()}`,
-      lastMod: getDate,
-    };
-  });
 
-  
+  const dynamicAmountPaths = data?.amounts
+    ?.filter(
+      (path: any) =>
+        (path.amount <= 200000000 && path.amount % 1000000 !== 0) ||
+        path.amount > 200000000
+    )
+    .map((data: any) => {
+      return {
+        location: `/income/${data.amount.toString()}`,
+        lastMod: getDate,
+      };
+    });
   const datas = {
     pages: [
       {
