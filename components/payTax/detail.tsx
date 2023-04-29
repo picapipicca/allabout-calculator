@@ -74,7 +74,7 @@ const TaxDetail = ({ incomeSet, amount }: TaxDetailProps) => {
         <div className="min-h-[50px] mb-24 pb-4">
           <div>
             <table className="caption-bottom table-auto w-full overflow-x-auto text-left text-gray-500 ">
-              <thead className="text-sm text-gray-700 bg-gray-50 dark:bg-gray-700">
+              <thead className="text-sm text-gray-700 bg-gray-50">
                 <tr>
                   <th scope="col" className="px-6 py-3 text-lg">
                     공제액 상세내역

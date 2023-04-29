@@ -1,12 +1,13 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import { Amount } from "@prisma/client";
 import useSWR from "swr";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface GraphProps {
   ok: boolean;
-  amounts: { id: number; amount: number; count: number }[];
+  amounts: Amount[];
 }
 const Graph = () => {
   const { data } = useSWR<GraphProps>(`/api/amount`);

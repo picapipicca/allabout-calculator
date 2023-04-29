@@ -90,7 +90,7 @@ const Bmi: NextPage = () => {
             }}
             data-modal-target="top-left-modal"
             data-modal-toggle="top-left-modal"
-            className="block w-min md:w-fit text-blue-800  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm ml-4 text-center dark:bg-white dark:hover:bg-gray-100 dark:focus:ring-blue-800"
+            className="block w-min md:w-fit text-blue-800  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm ml-4 text-center"
             type="button"
           >
             <svg
@@ -185,12 +185,12 @@ const Bmi: NextPage = () => {
             )}
             <div className="py-10">
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
+                <table className="w-full text-sm text-left text-gray-500">
+                  <thead className="text-xs text-gray-700 uppercase">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-lg border-b"
+                        className="px-6 py-3 bg-gray-50 text-md sm:text-lg border-b"
                       >
                         내 체중상태
                       </th>
@@ -202,7 +202,7 @@ const Bmi: NextPage = () => {
                   <tbody>
                     {bmiRanges.map(({ range, min, max }) => (
                       <tr
-                        className="border-b border-gray-200 dark:border-gray-700 text-base"
+                        className="border-b border-gray-200 text-base"
                         key={range}
                       >
                         <th
@@ -211,7 +211,7 @@ const Bmi: NextPage = () => {
                             result && calculateBmi > min && calculateBmi < max
                               ? "bg-primary-100"
                               : "bg-gray-50"
-                          } px-6 py-4 font-medium text-gray-900 whitespace-nowrap  dark:text-white dark:bg-gray-800`}
+                          } px-6 py-4 font-medium text-gray-900 whitespace-nowrap `}
                         >
                           {range}
                         </th>
@@ -222,7 +222,7 @@ const Bmi: NextPage = () => {
                               : ""
                           } px-6 py-4`}
                         >
-                          {`${min} - ${max}`}
+                          {`${min} - ${max === Infinity ? "-" : max}`}
                         </td>
                       </tr>
                     ))}
@@ -243,16 +243,16 @@ const Bmi: NextPage = () => {
                 className="fixed top-[60px] left-0 right-0 z-1 w-full sm:w-1/2 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-fit max-h-full"
               >
                 <div className="relative w-full max-w-2xl max-h-full">
-                  <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                    <div className="flex justify-between p-5 pr-4 border-b rounded-t dark:border-gray-600">
-                      <h3 className="text-xl font-medium text-gray-900 dark:text-white pr-2">
+                  <div className="relative bg-white rounded-lg shadow">
+                    <div className="flex justify-between p-5 pr-4 border-b rounded-t">
+                      <h3 className="text-xl font-medium text-gray-900 pr-2">
                         체질량지수(BMI, Body Mass Index)에 의한 비만도 계산법 과{" "}
                         표준체중 계산법
                       </h3>
                       <button
                         onClick={() => setOpenModal(false)}
                         type="button"
-                        className="text-gray-400 -mt-2 h-fit bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        className="text-gray-400 -mt-2 h-fit bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                         data-modal-hide="top-left-modal"
                       >
                         <svg
@@ -273,26 +273,26 @@ const Bmi: NextPage = () => {
                     </div>
 
                     <div className="p-6 space-y-6">
-                      <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                      <p className="text-base leading-relaxed text-gray-500">
                         체질량지수(BMI, Body Mass Index) 계산법을 따라
                         계산되었습니다.
                       </p>
-                      <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400 whitespace-pre-line">
+                      <p className="text-base leading-relaxed text-gray-500 whitespace-pre-line">
                         {`BMI= 체중(kg) /(키(m)× 키(m))`}
                       </p>
-                      <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400 whitespace-pre-line">
+                      <p className="text-base leading-relaxed text-gray-500 whitespace-pre-line">
                         {`표준 체중 계산법 :
                  - 남성: 키(m) × 키(m) × 22
                  - 여성: 키(m) × 키(m) × 21  `}
                       </p>
                     </div>
 
-                    <div className="flex justify-end items-center p-4 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <div className="flex justify-end items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
                       <button
                         onClick={() => setOpenModal(false)}
                         data-modal-hide="top-left-modal"
                         type="button"
-                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                       >
                         닫기
                       </button>

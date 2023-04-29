@@ -42,7 +42,7 @@ const Nav = () => {
       </div>
       {/* 하단 */}
       <div
-        className={`bg-white fixed shadow-lg z-[-1] left-0 w-full h-[40%] sm:h-[55%] overflow-hidden p-16 transition-all ease-nav duration-500 ${
+        className={`bg-white fixed shadow-lg z-[-1] left-0 w-full h-[42%] sm:h-[55%] overflow-hidden p-16 transition-all ease-nav duration-500 ${
           navOpen ? "top-0 delay-150" : "delay-[0] -top-full"
         }`}
       >
@@ -102,7 +102,7 @@ const Nav = () => {
         </div>
       </div>
       <div
-        className={`fixed bg-white shadow-md z-[-2] left-0 w-full h-[48%] sm:h-[70%] overflow-hidden p-16 transition-all ease-nav duration-500 ${
+        className={`fixed bg-white shadow-md z-[-2] left-0 w-full h-[49%] sm:h-[70%] overflow-hidden p-16 transition-all ease-nav duration-500 ${
           navOpen ? "top-0 delay-70" : "delay-[0] -top-full"
         }`}
       >

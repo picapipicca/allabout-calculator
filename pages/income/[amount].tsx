@@ -178,8 +178,8 @@ const Salary: NextPage<IncomeResponseProps> = ({
           <main className="px-10">
             <TaxDetail amount={Number(newIncome)} incomeSet={incomeSet} />
           </main>
-          <aside className="pb-20 p-14 pt-0">
-            <h2 className="mb-8 text-xl font-bold text-black">
+          <aside className="pb-24 py-14 pt-0">
+            <h2 className="mb-8 text-xl font-bold text-black pl-10">
               사람들이 많이 검색해본 연봉은?
             </h2>
             <Graph />

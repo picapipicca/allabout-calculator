@@ -101,7 +101,7 @@ const DifferCheck: NextPage = () => {
                 }}
               ></textarea>
             </div>
-            <div className="flex">
+            <div className="flex pb-6">
               <button
                 onClick={() => {
                   setToggle(true);
@@ -140,7 +140,7 @@ const DifferCheck: NextPage = () => {
           ) : oldCode === "" && newCode === "" && toggle ? (
             <section>
               <div
-                className="p-4 my-10 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                className="p-4 my-10 text-sm text-red-800 rounded-lg bg-red-50"
                 role="alert"
               >
                 <span className="font-bold">입력칸을 확인해주세요!</span> <br />
