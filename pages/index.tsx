@@ -61,7 +61,7 @@ const Home: NextPage = () => {
             "2023년 내 연봉에서 통장으로 들어오는 실수령액은 얼마일까요? 현재 내 연봉에서부터 연봉 협상시 퍼센트 상승 별 실수령액도 지금 알아보세요.",
           images: [
             {
-              url: "/home-og-image.png",
+              url: "/home-og-image.jpeg",
               width: 1200,
               height: 630,
               alt: "Salary Calculator Og Image Alt",

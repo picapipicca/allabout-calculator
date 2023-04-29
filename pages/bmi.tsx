@@ -70,7 +70,7 @@ const Bmi: NextPage = () => {
             "내 키에서 적정 몸무게는 몇 키로 일까요? 체지방률(BMI) 계산기로 현재 내 체지방률과 적정 체지방률,적정 몸무게를 확인해보세요.",
           images: [
             {
-              url: "/bmi-og-image.png",
+              url: "/bmi-og-image.jpeg",
               width: 1200,
               height: 630,
               alt: "Bmi Calculator Og Image Alt",

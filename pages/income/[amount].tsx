@@ -111,7 +111,7 @@ const Salary: NextPage<IncomeResponseProps> = ({
             description: `2023년 연봉 ${income}만원 실수령액,얼마일까요? ${income}만원 실수령액부터, 여기서 5% 오르면 내 연봉은 얼마인지 확인해보세요.`,
             images: [
               {
-                url: "/salary-calculator-og-image.png",
+                url: "/salary-calculator-og-image.jpeg",
                 width: 1200,
                 height: 630,
                 alt: "Salary Calculator Og Image Alt",

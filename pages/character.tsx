@@ -62,7 +62,7 @@ const CharacterCalculator: NextPage = () => {
               "입력한 글자의 개수를 바로 확인하여 이력서 및 자기 소개서의 글자수를 맞춰보세요.",
             images: [
               {
-                url: "/character-og-image.png",
+                url: "/home-og-image.jpeg",
                 width: 1200,
                 height: 630,
                 alt: "Count Character Og Image Alt",

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 
@@ -6,8 +7,10 @@ const Custom404 = () => {
     <>
       <div className="max-h-max min-h-screen bg-white pt-16">
         <div className="mx-auto min-w-[295px] max-w-[80%] items-center justify-center md:max-w-lg">
-          <div className="w-48 h-48 bg-gray-400 mt-20 mx-auto">직접만든 x 이미지~</div>
-          <div className="group py-3 mt-10 justify-center sm:mt-3 h-20 w-full items-center whitespace-nowrap bg-primary-100 px-4  hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-700">
+          <div className="mt-20 mx-auto">
+            <Image src={'/404.jpeg'} alt="404-image" width={200} height={400} className="mx-auto"/>
+          </div>
+          <div className="group py-3 justify-center sm:mt-3 h-20 w-full items-center whitespace-nowrap bg-primary-100 px-4  hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-700">
             <h1 className="mb-1 text-2xl font-bold text-black">
               잘못된 경로입니다!
             </h1>

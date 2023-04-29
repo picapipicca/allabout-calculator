@@ -57,7 +57,7 @@ const DifferCheck: NextPage = () => {
             "입력한 글이나 코드의 다른곳을 보기쉽게 확인하여 쉽고 빠르게 바로 수정하세요.",
           images: [
             {
-              url: "/diffChecker-og-image.png",
+              url: "/differ-checker-og-image.jpeg",
               width: 1200,
               height: 630,
               alt: "Different Text Og Image Alt",
