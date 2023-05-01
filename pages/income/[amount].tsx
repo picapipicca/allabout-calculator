@@ -12,14 +12,23 @@ import Input from "@/components/atoms/input";
 import AmountSkeleton from "@/components/amountSkeleton";
 import Pagination from "@/components/pagination";
 import { NextSeo } from "next-seo";
+import client from "@/helpers/server/client";
+import { Amount } from "@prisma/client";
+
+interface GraphProps {
+  ok: boolean;
+  amounts: Amount[];
+}
 
 interface IncomeResponseProps {
   income: number;
   taxData: any;
   tableArr: any;
+  data: GraphProps;
 }
 
 const Salary: NextPage<IncomeResponseProps> = ({
+  data,
   income,
   taxData,
   tableArr,
@@ -182,7 +191,7 @@ const Salary: NextPage<IncomeResponseProps> = ({
             <h2 className="mb-8 text-xl font-bold text-black pl-10">
               사람들이 많이 검색해본 연봉은?
             </h2>
-            <Graph />
+            <Graph data={data} />
           </aside>
           <main className="pb-16 px-10">
             <h2 className="mb-8 text-xl font-bold text-black">
@@ -213,18 +222,25 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const income = Number(ctx.params?.amount);
   const taxData = useTransIncome(Number(income));
   const { tableArr } = useTransIncomeLight();
-
+  const data = await client.amount.findMany({
+    select: {
+      amount: true,
+      count: true,
+    },
+  });
   return {
     props: {
+      data: JSON.parse(JSON.stringify(data)),
       income: JSON.parse(JSON.stringify(income)),
       taxData: JSON.parse(JSON.stringify(taxData)),
       tableArr: JSON.parse(JSON.stringify(tableArr)),
     },
+    revalidate: 10,
   };
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
-   let arr: any = Array.from({ length: 191 }, (x, i) => (i + 10) * 1000000);
+  let arr: any = Array.from({ length: 191 }, (x, i) => (i + 10) * 1000000);
   const paths = arr.map((nums: string) => ({
     params: { amount: nums.toString() },
   }));

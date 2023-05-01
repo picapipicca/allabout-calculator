@@ -1,19 +1,13 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
-import { Amount } from "@prisma/client";
-import useSWR from "swr";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-interface GraphProps {
-  ok: boolean;
-  amounts: Amount[];
-}
-const Graph = () => {
-  const { data } = useSWR<GraphProps>(`/api/amount`);
+
+const Graph = (data:any) => {
 
   const dataArray = data?.amounts?.reduce(
-    (acc, curr) => {
+    (acc:any, curr:any) => {
       const index =
         curr.amount < 140000000 ? Math.floor(curr.amount / 20000000) : 7;
       acc[index] += curr.count;
