@@ -7,8 +7,8 @@ const Custom404 = () => {
     <>
       <div className="max-h-max min-h-screen bg-white pt-16">
         <div className="mx-auto min-w-[295px] max-w-[80%] items-center justify-center md:max-w-lg">
-          <div className="mt-20 mx-auto">
-            <Image src={'/404.jpeg'} alt="404-image" width={200} height={400} className="mx-auto"/>
+          <div className="mt-20 mx-auto w-auto h-auto">
+            <Image src={'/404.jpeg'} alt="404-image" width={200} height={400} className="mx-auto" priority/>
           </div>
           <div className="group py-3 justify-center sm:mt-3 h-20 w-full items-center whitespace-nowrap bg-primary-100 px-4  hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-700">
             <h1 className="font-notoSans mb-1 text-2xl font-bold text-black">
