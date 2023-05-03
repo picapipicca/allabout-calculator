@@ -123,7 +123,7 @@ const DifferCheck: NextPage = () => {
             </div>
           </section>
           {toggle && oldCode && newCode ? (
-            <section className="sm:pb-32 sm:pt-20">
+            <section className="py-4 pb-10 sm:pb-32 sm:pt-20">
               <ReactDiffViewer
                 oldValue={oldCode}
                 newValue={newCode}
@@ -138,7 +138,7 @@ const DifferCheck: NextPage = () => {
               />
             </section>
           ) : oldCode === "" && newCode === "" && toggle ? (
-            <section className="py-4 pb-10">
+            <section>
               <div
                 className="p-4 my-10 text-sm text-red-800 rounded-lg bg-red-50"
                 role="alert"
