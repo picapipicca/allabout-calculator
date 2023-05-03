@@ -5,6 +5,9 @@ import Head from "next/head";
 import { Black_Han_Sans, Noto_Sans_KR } from "@next/font/google";
 import { cls } from "@/helpers/client/utils";
 import { SWRConfig } from "swr";
+import { DefaultSeo } from "next-seo";
+import SEO from "../seo.config";
+import Script from "next/script";
 
 const blackHanSans = Black_Han_Sans({
   subsets: ["latin"],
@@ -21,14 +24,29 @@ const notoSansKr = Noto_Sans_KR({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <SWRConfig
-      value={{ fetcher: (url: string) => fetch(url).then((res) => res.json()) }}
+      value={{
+        fetcher: (url: string) => fetch(url).then((res) => res.json()),
+      }}
     >
+      <DefaultSeo {...SEO} />
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-9595RXCQB5"
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: ` window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-3KXXC0YXXF',{page_path : window.location.pathname,});`,
+        }}
+      />
       <Layout>
         <Head>
-          {/* <title></title>
-        <meta name="naver-site-verification" content="2a38d93696d0a16b1f97da7c83abe46194d8cf40" />
-        <meta name="description" content="Income tax calculator 2023 - salary after tax"/>
-        <meta name="viewport" content="initial-scale=1.0, width=devide-width" /> */}
+          {/*  <meta name="viewport" content="initial-scale=1.0, width=devide-width" /> */}
         </Head>
         <main className={cls(blackHanSans.variable, notoSansKr.variable)}>
           <Component {...pageProps} />
