@@ -42,7 +42,7 @@ const Nav = () => {
       </div>
       {/* 하단 */}
       <div
-        className={`bg-white fixed shadow-lg z-[-1] left-0 w-full h-[42%] sm:h-[55%] overflow-hidden p-16 transition-all ease-nav duration-500 ${
+        className={`bg-white fixed shadow-lg z-[-1] left-0 w-full h-[43%] sm:h-[55%] overflow-hidden p-16 transition-all ease-nav duration-500 ${
           navOpen ? "top-0 delay-150" : "delay-[0] -top-full"
         }`}
       >

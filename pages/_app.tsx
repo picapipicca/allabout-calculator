@@ -40,8 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
           __html: ` window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
-      gtag('config', 'G-3KXXC0YXXF',{page_path : window.location.pathname,});`,
+      gtag('config', 'G-3KXXC0YXXF');`,
         }}
       />
       <Layout>

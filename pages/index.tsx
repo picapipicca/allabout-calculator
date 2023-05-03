@@ -1,6 +1,6 @@
 import Input from "@/components/atoms/input";
 import type { NextPage } from "next";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { unitChange } from "@/helpers/client/utils";
 import { NextSeo } from "next-seo";

@@ -79,7 +79,7 @@ const Bmi: NextPage = () => {
         }}
       />
       <div className="min-h-[calc(100vh-61px)] mx-auto min-w-[295px] px-10 sm:px-20 pt-24">
-        <h1 className="title-clip-path absolute m-[-1px] grid h-[1px] w-[1px] items-center gap-2.5 overflow-hidden">
+        <h1 className="font-blackHanSans title-clip-path absolute m-[-1px] grid h-[1px] w-[1px] items-center gap-2.5 overflow-hidden">
           비만도 계산기
         </h1>
         <header className="font-semibold text-3xl flex pb-10">

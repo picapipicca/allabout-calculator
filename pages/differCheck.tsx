@@ -71,7 +71,7 @@ const DifferCheck: NextPage = () => {
         </h1>
 
         <header className="py-6">
-          <h2 className="font-medium">
+          <h2 className="font-medium font-blackHanSans">
             <span className="font-bold text-xl text-red-600">How to ?</span>{" "}
             &nbsp; 좌,우 칸에 비교하고 싶은 문장들을 각각 넣고 확인하기 버튼을
             눌러주세요.{" "}
@@ -138,7 +138,7 @@ const DifferCheck: NextPage = () => {
               />
             </section>
           ) : oldCode === "" && newCode === "" && toggle ? (
-            <section>
+            <section className="py-4 pb-10">
               <div
                 className="p-4 my-10 text-sm text-red-800 rounded-lg bg-red-50"
                 role="alert"
