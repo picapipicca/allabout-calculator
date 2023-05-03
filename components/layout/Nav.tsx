@@ -102,19 +102,21 @@ const Nav = () => {
         </div>
       </div>
       <div
-        className={`fixed bg-white shadow-md z-[-2] left-0 w-full h-[49%] sm:h-[70%] overflow-hidden p-16 transition-all ease-nav duration-500 ${
+        className={`fixed bg-white shadow-md z-[-2] left-0 w-full h-[49%] sm:h-[68%] overflow-hidden p-16 transition-all ease-nav duration-500 ${
           navOpen ? "top-0 delay-70" : "delay-[0] -top-full"
         }`}
       >
         <div className="absolute w-full bottom-0 left-0 p-8 flex justify-between sm:justify-around font-notoSans">
-          <div className="relative -bottom-6 transition-all ease-navMenuTF duration-navMenuDuration font-bold text-3xl sm:text-[7rem]">
+          <div className="relative -bottom-6 sm:-bottom-0 transition-all ease-navMenuTF duration-navMenuDuration font-bold text-3xl sm:text-[7rem]">
             <span>©2023</span>
           </div>
           <nav>
             <ul className="flex space-x-4 text-sm sm:text-base">
               <li className="list-none">
                 <Link
-                  href={"#"}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={"https://github.com/picapipicca/allabout-calculator"}
                   className=" md:py-0 md:px-4 relative -bottom-8 sm:-bottom-10 no-underline text-stone-700 uppercase transition-all ease-navMenuTF duration-navMenuDuration"
                 >
                   <svg
@@ -133,7 +135,8 @@ const Nav = () => {
               </li>
               <li className="list-none">
                 <Link
-                  href={"#"}
+                  title="개발자에게 이메일 보내기"
+                  href={"이해원 : haewon09106@gmail.com"}
                   className=" md:py-0 md:px-4 relative -bottom-8 sm:-bottom-10 no-underline text-stone-700 uppercase transition-all ease-navMenuTF duration-navMenuDuration"
                 >
                   <svg

@@ -119,7 +119,7 @@ const CharacterCalculator: NextPage = () => {
                   </span>
                   &nbsp; 자 | {charBytes} byte
                 </p>
-                <p className="text-lg">
+                <p className="text-lg font-notoSans">
                   공백 제외 &nbsp;{" "}
                   <span className="font-bold text-[#bb3e64]">{textTrim}</span>{" "}
                   &nbsp;자 | {charBytes - (text.length - textTrim)} byte
