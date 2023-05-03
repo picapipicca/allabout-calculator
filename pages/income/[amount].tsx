@@ -16,7 +16,6 @@ import client from "@/helpers/server/client";
 import { Amount } from "@prisma/client";
 
 interface GraphProps {
-  ok: boolean;
   amounts: Amount[];
 }
 
@@ -24,11 +23,11 @@ interface IncomeResponseProps {
   income: number;
   taxData: any;
   tableArr: any;
-  data: GraphProps;
+  graphData: GraphProps;
 }
 
 const Salary: NextPage<IncomeResponseProps> = ({
-  data,
+  graphData,
   income,
   taxData,
   tableArr,
@@ -43,7 +42,6 @@ const Salary: NextPage<IncomeResponseProps> = ({
   const onPageChange = (page: any) => {
     setCurrentPage(page);
   };
-
   const incomeSet =
     percentIncomeData && taxData
       ? Object.entries(percentIncomeData).map(([key, value]) => {
@@ -160,14 +158,14 @@ const Salary: NextPage<IncomeResponseProps> = ({
             </button>
           </form>
           <div className="px-10 flex text-center items-center py-4">
-            <h2 className="text-left">
+            <h2 className="text-left pr-2 w-full">
               연봉 협상할 때, <br />
               <span className="font-bold bg-yellow-200 px-1 rounded-full">
                 {percent}
               </span>
-              퍼센트 오른 내 실수령액은 얼마?
+              퍼센트 오른 <br />내 실수령액은 얼마?
             </h2>
-            <div className="flex justify-end h-12 mx-auto">
+            <div className="flex justify-end h-12 w-full">
               <button className="bg-red-100 w-12" onClick={percentOnIncrease}>
                 +
               </button>
@@ -188,10 +186,7 @@ const Salary: NextPage<IncomeResponseProps> = ({
             <TaxDetail amount={Number(newIncome)} incomeSet={incomeSet} />
           </main>
           <aside className="pb-24 py-14 pt-0">
-            <h2 className="mb-8 text-xl font-bold text-black pl-10">
-              사람들이 많이 검색해본 연봉은?
-            </h2>
-            <Graph data={data} />
+            <Graph graphData={graphData} />
           </aside>
           <main className="pb-16 px-10">
             <h2 className="mb-8 text-xl font-bold text-black">
@@ -230,7 +225,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   });
   return {
     props: {
-      data: JSON.parse(JSON.stringify(data)),
+      graphData: JSON.parse(JSON.stringify(data)),
       income: JSON.parse(JSON.stringify(income)),
       taxData: JSON.parse(JSON.stringify(taxData)),
       tableArr: JSON.parse(JSON.stringify(tableArr)),

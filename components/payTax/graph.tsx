@@ -1,13 +1,15 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useState } from "react";
 import { Pie } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const Graph = (props: any) => {
+  const { graphData } = props;
+  console.log(graphData);
 
-const Graph = (data:any) => {
-
-  const dataArray = data?.amounts?.reduce(
-    (acc:any, curr:any) => {
+  const dataArray = graphData.reduce(
+    (acc: any, curr: any) => {
       const index =
         curr.amount < 140000000 ? Math.floor(curr.amount / 20000000) : 7;
       acc[index] += curr.count;
@@ -15,8 +17,12 @@ const Graph = (data:any) => {
     },
     [0, 0, 0, 0, 0, 0, 0, 0]
   );
+  const sum = dataArray.reduce((acc: any, val: any) => acc + val);
+  const findPercent = dataArray.map((num: number) =>
+    Math.round((num / sum) * 100)
+  );
 
-  const graphData = {
+  const pieData = {
     labels: [
       "- 2000만원",
       "2000-4000만원",
@@ -30,7 +36,7 @@ const Graph = (data:any) => {
     datasets: [
       {
         label: "검색한 %",
-        data: dataArray,
+        data: findPercent,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -55,9 +61,12 @@ const Graph = (data:any) => {
       },
     ],
   };
-  return data ? (
+  return findPercent ? (
     <>
-      <Pie data={graphData} />
+      <h2 className="mb-8 text-xl font-bold text-black pl-10">
+        사람들이 많이 검색해본 연봉은?
+      </h2>
+      <Pie data={pieData} />
     </>
   ) : null;
 };
