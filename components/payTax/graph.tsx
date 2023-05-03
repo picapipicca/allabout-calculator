@@ -6,7 +6,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Graph = (props: any) => {
   const { graphData } = props;
-  console.log(graphData);
+
 
   const dataArray = graphData.reduce(
     (acc: any, curr: any) => {
