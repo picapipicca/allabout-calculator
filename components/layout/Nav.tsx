@@ -107,7 +107,7 @@ const Nav = () => {
         }`}
       >
         <div className="absolute w-full bottom-0 left-0 p-8 flex justify-between sm:justify-around font-notoSans">
-          <div className="relative -bottom-7 sm:-bottom-0 transition-all ease-navMenuTF duration-navMenuDuration font-bold text-3xl sm:text-[7rem]">
+          <div className="relative -bottom-8 sm:-bottom-7 transition-all ease-navMenuTF duration-navMenuDuration font-bold text-3xl sm:text-[7rem]">
             <span>©2023</span>
           </div>
           <nav>
@@ -117,7 +117,7 @@ const Nav = () => {
                   rel="noopener noreferrer"
                   target="_blank"
                   href={"https://github.com/picapipicca/allabout-calculator"}
-                  className=" md:py-0 md:px-4 relative -bottom-7 sm:-bottom-10 no-underline text-stone-700 uppercase transition-all ease-navMenuTF duration-navMenuDuration"
+                  className=" md:py-0 md:px-4 relative -bottom-11 sm:-bottom-12 no-underline text-stone-700 uppercase transition-all ease-navMenuTF duration-navMenuDuration"
                 >
                   <svg
                     className="w-5 h-5"
@@ -136,8 +136,8 @@ const Nav = () => {
               <li className="list-none">
                 <Link
                   title="개발자에게 이메일 보내기"
-                  href={"이해원 : haewon09106@gmail.com"}
-                  className=" md:py-0 md:px-4 relative -bottom-7 sm:-bottom-10 no-underline text-stone-700 uppercase transition-all ease-navMenuTF duration-navMenuDuration"
+                  href={`mailto:haewon09106@gmail.com`}
+                  className=" md:py-0 md:px-4 relative -bottom-11 sm:-bottom-12 no-underline text-stone-700 uppercase transition-all ease-navMenuTF duration-navMenuDuration"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +145,7 @@ const Nav = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6"
+                    className="w-6 h-6 -mt-0.5"
                   >
                     <path
                       strokeLinecap="round"
