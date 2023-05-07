@@ -83,7 +83,7 @@ const Bmi: NextPage = () => {
           비만도 계산기
         </h1>
         <header className="font-semibold text-2xl flex pb-10">
-          <p className="font-blackHanSans font-medium">
+          <p className="font-Black font-medium">
             비만도 계산 : 내 체중은 정상일까요? &nbsp;{" "}
           </p>
           <button
@@ -224,7 +224,7 @@ const Bmi: NextPage = () => {
                               : ""
                           } px-6 py-4`}
                         >
-                          {`${min} - ${max === Infinity ? "-" : max}`}
+                          {`${min} - ${max === Infinity ? "" : max}`}
                         </td>
                       </tr>
                     ))}

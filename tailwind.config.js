@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const { fontFamily } = require("tailwindcss/defaultTheme");
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
@@ -7,9 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily:{
-        blackHanSans:['var(--blackHanSans)'],
-        notoSans: ['var(--notoSansKr)'],
+      fontFamily: {
+        Noto: ["Noto Sans KR", "sans-serif"],
+        Black: ['Black Han Sans', "sans-serif"],
       },
       colors: {
         primary: {
@@ -31,7 +32,7 @@ module.exports = {
       },
       transitionTimingFunction: {
         navMenuTF: "cubic-bezier(0.16, 1, 0.3,1)",
-        nav: "cubic-bezier(.075,.82,.165,1)", 
+        nav: "cubic-bezier(.075,.82,.165,1)",
       },
       transitionDuration: {
         navMenuDuration: "800ms",

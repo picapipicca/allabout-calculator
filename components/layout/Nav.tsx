@@ -8,7 +8,7 @@ const Nav = () => {
       {/* 최상단 */}
       <div className="fixed top-0 left-0 w-full flex justify-between items-center p-4 pl-8 bg-white">
         {/* 로고 */}
-        <div className="no-underline text-black font-bold text-2xl sm:text-4xl font-blackHanSans">
+        <div className="no-underline text-black font-bold text-2xl sm:text-4xl font-Black">
           <Link href={"/"}>올어바웃 계산기</Link>
         </div>
         {/* x 표시 */}
@@ -47,7 +47,7 @@ const Nav = () => {
         }`}
       >
         <div className="">
-          <ul className=" font-blackHanSans space-y-2 sm:space-y-4 absolute top-[63%] sm:top-[60%] left-1/2 sm:left-3/4 translate-x-[-50%] translate-y-[-50%] m-0 p-0 flex flex-col justify-center items-center">
+          <ul className=" font-Black space-y-2 sm:space-y-4 absolute top-[63%] sm:top-[60%] left-1/2 sm:left-3/4 translate-x-[-50%] translate-y-[-50%] m-0 p-0 flex flex-col justify-center items-center">
             <li className="list-none relative cursor-pointer">
               <Link
                 href={"/differCheck"}
@@ -106,7 +106,7 @@ const Nav = () => {
           navOpen ? "top-0 delay-70" : "delay-[0] -top-full"
         }`}
       >
-        <div className="absolute w-full bottom-0 left-0 p-8 flex justify-between sm:justify-around font-notoSans">
+        <div className="absolute w-full bottom-0 left-0 p-8 flex justify-between sm:justify-around font-Noto">
           <div className="relative -bottom-8 sm:-bottom-7 transition-all ease-navMenuTF duration-navMenuDuration font-bold text-3xl sm:text-[7rem]">
             <span>©2023</span>
           </div>

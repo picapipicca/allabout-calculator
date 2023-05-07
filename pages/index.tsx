@@ -75,7 +75,7 @@ const Home: NextPage = () => {
             2023 연봉 실수령액 계산기
           </h1>
           <header className="w-52">
-            <p className="text-3xl font-blackHanSans">연봉 계산기 💸</p>
+            <p className="text-3xl font-Black">연봉 계산기 💸</p>
           </header>
           <h4 className="mt-4 text-base font-medium text-black font-notoSans">
             내 연봉을 입력하고 실수령액을 알아보세요!

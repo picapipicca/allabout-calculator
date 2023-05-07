@@ -2,24 +2,24 @@ import Layout from "@/components/layout/layout";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Black_Han_Sans, Noto_Sans_KR } from "@next/font/google";
 import { cls } from "@/helpers/client/utils";
 import { SWRConfig } from "swr";
 import { DefaultSeo } from "next-seo";
 import SEO from "../seo.config";
 import Script from "next/script";
+// import { Black_Han_Sans, Noto_Sans_KR } from "@next/font/google";
 
-const blackHanSans = Black_Han_Sans({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--blackHanSans",
-});
+// const blackHanSans = Black_Han_Sans({
+//   subsets: ["latin"],
+//   weight: ["400"],
+//   variable: "--font-black",
+// });
 
-const notoSansKr = Noto_Sans_KR({
-  subsets: ["latin"],
-  weight: ["100", "400", "700", "900"],
-  variable: "--notoSansKr",
-});
+// const notoSansKr = Noto_Sans_KR({
+//   subsets: ["latin"],
+//   weight: ["100", "400", "700", "900"],
+//   variable: "--font-noto",
+// });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -45,9 +45,10 @@ export default function App({ Component, pageProps }: AppProps) {
       />
       <Layout>
         <Head>
-          {/*  <meta name="viewport" content="initial-scale=1.0, width=devide-width" /> */}
+           <meta name="viewport" content="initial-scale=1.0, width=devide-width" />
         </Head>
-        <main className={cls(blackHanSans.variable, notoSansKr.variable)}>
+        {/* <main className={`${blackHanSans.variable} ${notoSansKr.variable} font-sans`}> */}
+        <main>
           <Component {...pageProps} />
         </main>
       </Layout>

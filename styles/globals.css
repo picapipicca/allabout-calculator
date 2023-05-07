@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap");
+
 @layer utilities {
   .title-clip-path {
     clip-path: polygon(0 0, 0 0, 0 0);
@@ -27,5 +30,4 @@
   .banner-section {
     cursor: pointer;
   }
-
 }
