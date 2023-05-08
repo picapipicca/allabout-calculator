@@ -12,7 +12,7 @@ datasource db {
 }
 model Amount {
   id        Int      @id @default(autoincrement())
-  amount    Int
+  amount    Int   @unique
   createdAt DateTime @default(now())
   count     Int @default(1)
   // user      User     @relation(fields: [userId], references: [id])
