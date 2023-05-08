@@ -7,7 +7,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const Graph = (props: any) => {
   const { graphData } = props;
 
-
   const dataArray = graphData.reduce(
     (acc: any, curr: any) => {
       const index =
@@ -63,10 +62,15 @@ const Graph = (props: any) => {
   };
   return findPercent ? (
     <>
-      <h2 className="mb-8 text-xl font-bold text-black pl-10">
-        사람들이 많이 검색해본 연봉은?
-      </h2>
-      <Pie data={pieData} />
+      <div className="px-10">
+        <h2 className="text-xl font-bold text-black mb-2">
+          사람들이 많이 검색해본 연봉은?
+        </h2>
+        <p className="mb-4 text-xs text-gray-500">
+          * 아래의 단위를 클릭하면 원하는 범위만 볼수있습니다
+        </p>
+      </div>
+      <Pie data={pieData} style={{padding:"5px"}} />
     </>
   ) : null;
 };

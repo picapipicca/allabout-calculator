@@ -8,7 +8,7 @@ const Nav = () => {
       {/* 최상단 */}
       <div className="fixed top-0 left-0 w-full flex justify-between items-center p-4 pl-8 bg-white">
         {/* 로고 */}
-        <div className="no-underline text-black font-bold text-2xl sm:text-4xl font-Black">
+        <div className="no-underline text-black font-[300] text-3xl sm:text-[37px] font-Black">
           <Link href={"/"}>올어바웃 계산기</Link>
         </div>
         {/* x 표시 */}
@@ -47,12 +47,12 @@ const Nav = () => {
         }`}
       >
         <div className="">
-          <ul className=" font-Black space-y-2 sm:space-y-4 absolute top-[63%] sm:top-[60%] left-1/2 sm:left-3/4 translate-x-[-50%] translate-y-[-50%] m-0 p-0 flex flex-col justify-center items-center">
+          <ul className="sm:text-[34px] text-[30px] font-Black sm:space-y-2 absolute top-[63%] sm:top-[60%] left-1/2 sm:left-3/4 translate-x-[-50%] translate-y-[-50%] m-0 p-0 flex flex-col justify-center items-center">
             <li className="list-none relative cursor-pointer">
               <Link
                 href={"/differCheck"}
                 onClick={() => setNavOpen(!navOpen)}
-                className={`sm:text-3xl no-underline text-black text-3xl relative hover:text-stone-500`}
+                className={`no-underline text-black relative hover:text-stone-500`}
               >
                 다른곳 찾기
               </Link>
@@ -62,7 +62,7 @@ const Nav = () => {
               <Link
                 onClick={() => setNavOpen(!navOpen)}
                 href={"/"}
-                className={` sm:text-3xl no-underline text-black text-3xl relative hover:text-stone-500`}
+                className={`no-underline text-black  relative hover:text-stone-500`}
               >
                 연봉계산기
               </Link>
@@ -72,7 +72,7 @@ const Nav = () => {
               <Link
                 onClick={() => setNavOpen(!navOpen)}
                 href={"/grammar"}
-                className={`md:text-5xl no-underline text-black text-3xl relative hover:text-stone-500`}
+                className={`md:text-5xl no-underline text-black text-[32px] relative hover:text-stone-500`}
               >
                 맞춤법 검사기
               </Link>
@@ -82,7 +82,7 @@ const Nav = () => {
               <Link
                 onClick={() => setNavOpen(!navOpen)}
                 href={"/character"}
-                className={`sm:text-3xl no-underline text-black text-3xl relative hover:text-stone-500`}
+                className={`no-underline text-black  relative hover:text-stone-500`}
               >
                 글자수 세기
               </Link>
@@ -92,7 +92,7 @@ const Nav = () => {
               <Link
                 onClick={() => setNavOpen(!navOpen)}
                 href={"/bmi"}
-                className={`sm:text-3xl no-underline text-black text-3xl relative hover:text-stone-500`}
+                className={`no-underline text-black relative hover:text-stone-500`}
               >
                 비만도 계산기
               </Link>

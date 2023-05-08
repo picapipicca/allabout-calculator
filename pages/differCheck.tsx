@@ -71,8 +71,8 @@ const DifferCheck: NextPage = () => {
         </h1>
 
         <header className="py-6">
-          <h2 className="font-medium font-black">
-            <span className="font-bold text-xl text-red-600">How to ?</span>{" "}
+          <h2 className="font-medium">
+            <span className="font-bold text-xl text-red-600 font-Black">How to ?</span>{" "}
             &nbsp; 좌,우 칸에 비교하고 싶은 문장들을 각각 넣고 확인하기 버튼을
             눌러주세요.{" "}
           </h2>
