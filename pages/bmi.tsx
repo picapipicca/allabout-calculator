@@ -90,9 +90,9 @@ const Bmi: NextPage = () => {
             onClick={() => {
               setOpenModal((prev) => !prev);
             }}
-            data-modal-target="top-left-modal"
-            data-modal-toggle="top-left-modal"
-            className="block w-min md:w-fit text-blue-800  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm ml-4 text-center"
+            // data-modal-target="top-left-modal"
+            // data-modal-toggle="top-left-modal"
+            className="block w-min text-emerald-600 font-medium text-sm ml-4 text-center md:w-fit"
             type="button"
           >
             <svg
@@ -239,10 +239,10 @@ const Bmi: NextPage = () => {
                 onBlur={() => {
                   setOpenModal(false);
                 }}
-                id="top-left-modal"
-                data-modal-placement="top-left"
+                // id="top-left-modal"
+                // data-modal-placement="top-left"
                 tabIndex={-1}
-                className="fixed top-[60px] left-0 right-0 z-1 w-full sm:w-1/2 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-fit max-h-full"
+                className="fixed top-[70px] left-0 right-0 z-10 w-full sm:w-1/2 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-fit max-h-full"
               >
                 <div className="relative w-full max-w-2xl max-h-full">
                   <div className="relative bg-white rounded-lg shadow">
@@ -255,7 +255,7 @@ const Bmi: NextPage = () => {
                         onClick={() => setOpenModal(false)}
                         type="button"
                         className="text-gray-400 -mt-2 h-fit bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                        data-modal-hide="top-left-modal"
+                        // data-modal-hide="top-left-modal"
                       >
                         <svg
                           aria-hidden="true"
@@ -292,7 +292,7 @@ const Bmi: NextPage = () => {
                     <div className="flex justify-end items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
                       <button
                         onClick={() => setOpenModal(false)}
-                        data-modal-hide="top-left-modal"
+                        // data-modal-hide="top-left-modal"
                         type="button"
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                       >
