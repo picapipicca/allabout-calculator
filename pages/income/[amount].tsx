@@ -98,6 +98,16 @@ const Salary: NextPage<IncomeResponseProps> = ({
           title={`2023 연봉 ${income}만원 실수령액`}
           description={`2023년 연봉 ${income}만원 실수령액,얼마일까요? ${income}만원 실수령액부터, 여기서 5% 오르면 내 연봉은 얼마인지 확인해보세요.`}
           canonical={`https://allcalculator.shop/income/${income}`}
+          additionalLinkTags={[
+            {
+              rel: "icon",
+              href: "/favicon.ico",
+            },
+            {
+              rel: "manifest",
+              href: "/site.webmanifest",
+            },
+          ]}
           additionalMetaTags={[
             {
               name: "keywords",

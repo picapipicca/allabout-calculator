@@ -39,14 +39,14 @@ const Bmi: NextPage = () => {
         canonical="https://allcalculator.shop/bmi"
         additionalLinkTags={
           [
-            // {
-            //   rel: 'icon',
-            //   href: '/favicon.ico',
-            // },
-            // {
-            //   rel: 'manifest',
-            //   href: '/manifest.json',
-            // },
+            {
+              rel: 'icon',
+              href: '/favicon.ico',
+            },
+            {
+              rel: 'manifest',
+              href: '/site.webmanifest',
+            },
           ]
         }
         additionalMetaTags={[

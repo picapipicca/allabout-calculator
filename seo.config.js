@@ -1,14 +1,14 @@
 export default {
   titleTemplate: "%s - 올 어바웃 계산기",
-  additionalLinkTags: [
-    // {
-    //   rel: 'icon',
-    //   href: '/favicon.ico',
-    // },
-    // {
-    //   rel: 'manifest',
-    //   href: '/manifest.json',
-    // },
+  additionalLinkTags:[
+    {
+      rel: 'icon',
+      href: '/favicon.ico',
+    },
+    {
+      rel: 'manifest',
+      href: '/site.webmanifest',
+    },
   ],
   openGraph: {
     type: "website",

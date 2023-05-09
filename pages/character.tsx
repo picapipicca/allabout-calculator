@@ -31,14 +31,14 @@ const CharacterCalculator: NextPage = () => {
           canonical="https://allcalculator.shop/character"
           additionalLinkTags={
             [
-              // {
-              //   rel: 'icon',
-              //   href: '/favicon.ico',
-              // },
-              // {
-              //   rel: 'manifest',
-              //   href: '/manifest.json',
-              // },
+              {
+                rel: 'icon',
+                href: '/favicon.ico',
+              },
+              {
+                rel: 'manifest',
+                href: '/site.webmanifest',
+              },
             ]
           }
           additionalMetaTags={[
