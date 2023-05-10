@@ -1,38 +1,70 @@
-# All about Calculator / 올 어바웃 계산기
+<h2>All about Calculator / 올 어바웃 계산기</h2>
 
+<br/>
 
-# 🗂Summary
-* 서비스명 : 올 어바웃 계산기
-* 서비스 설명 : 누구나 살아가면서 한번쯤은 검색해 봤다! 하는것을 모아둔 재미있는 계산기입니다. 
+<img width="100%" src="https://skifriend.shop/static/media/Home_banner.255a018411020b126d65.png" alt="skifriend">
 
-  💁🏻‍♀️ [사이트 바로가기](https://allcalculator.shop)
+<br/>
 
+- [사이트 링크 바로가기](https://allcalculator.shop/)
+- [시연 영상](https://www.youtube.com/watch?v=-xYttQl9TqA&feature=youtu.be&ab_channel=%EC%96%91%EC%84%B1%EC%9D%80)
 
+<br/>
+
+# 목차
+
+- 목차
+  - [프로젝트 소개](#프로젝트-소개)
+  - [프로젝트 기간](#프로젝트-기간)
+  - [프로젝트 아키텍처](#프로젝트-아키텍처)
+  - [페이지 구성](#페이지-구성)
+  - [유저 피드백 및 개선사항](#유저-피드백-및-개선사항)
+
+<br/>
+
+## 프로젝트 소개
+- 누구나 살아가면서 한번쯤은 검색해 봤다! 하는것을 모아둔 재미있는 계산기입니다. 
+
+## 프로젝트 기간
+
+- 2023.01~2023.03
+
+<br/>
+
+## 프로젝트 아키텍처
+
+<img width="1183" alt="프론트엔드 아키텍처" src="https://user-images.githubusercontent.com/83019343/151115330-df6227ee-baae-4052-98da-d99b4bcc7045.png">
+
+<br/>
 
 ## 🛠 기술 스텍 및 라이브러리
-
-- 개발언어 : Typescript
-- 라이브러리 : NextJS
-- 데이터베이스: Planet Scale (serverless MySQL platform), prisma (orm)
-- 서버 상태 관리 : swr (data fetching library)
-- 배포 : vercel distribution
-
+- 주요언어: Typescript
+- 주요 라이브러리: NextJS
+-상태관리 : swr (data fetching library)
+- 백엔드
+  - planet scale (serverless MySQL platform)
+  - prisma (orm)
+- 배포
+  - vercel
 - 스타일
-tailwind css
-
+  - tailwind css
 - 라이브러리 & 패키지
-chart.js , react-chartjs-2
-next-seo,
-react-diff-viewer,
+  -  chart.js 
+  -  react-diff-viewer
+  -  react-chartjs-2
+  -  next-seo,
 
+<br/>
 
-## 페이지 구성📖
+## **페이지 구성📖**
 
-- 메인 : 연봉 계산기  |  https://allcalculator.shop
-- 연봉계산기  |  https://allcalculator.shop/income/{연봉}
-- 비만도 계산기  |  https://allcalculator.shop/bmi
-- 다른곳 찾기  |  https://allcalculator.shop/differCheck
-- 글자수 세기  |  https://allcalculator.shop/character
+- 메인 ( 연봉계산기 검색 )
+- 연봉 계산기 
+- 비만도 계산기 검색/결과
+- 다른곳 찾기 검색/결과
+- 글자수 세기
+
+<br/>
 
 ## ⛔️ Trouble Shooting & Project Details
 layout 
@@ -75,3 +107,17 @@ NextJS를 이용한 SEO 최적화
  
 > Analytics
 - 실제 얼마만큼의 사용자가 검색해보고 사용하는지, 사이트 노출은 잘 되는지가 가장 중요해서 naver webmaster, google analytics, naver analytics 도입해서 분석중
+
+<br/>
+
+## 유저 피드백 및 개선사항
+
+(1) 내 연봉에서 몇퍼센트 오르면 얼마다 라고 알수있는 기능이 있으면 연봉협상시 잘 쓸 것 같아요
+  - 전: 검색한 연봉으로만 공제액과 실수령액 결과 단순 노출
+  - 후: +/- 버튼을 추가해 검색한 연봉에서 % 별 연봉 상승/하락을 바로 볼수있음
+
+(2) 다른사람들은 어떤 연봉을 검색하는지 궁금해요
+ - 전: 검색한 연봉으로만 공제액과 실수령액 결과 단순 노출
+ - 후: 사용자의 검색 연봉을 db에  저장하여 연봉 범위별 검색 비율을 파이 그래프로 시각적으로 보여줌
+
+  <br/>
