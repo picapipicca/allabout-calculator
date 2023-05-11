@@ -15,6 +15,7 @@
 - 목차
   - [프로젝트 소개](#프로젝트-소개)
   - [프로젝트 기간](#프로젝트-기간)
+  - [프로젝트 구조](#프로젝트-구조)
   - [페이지 구성](#페이지-구성)
   - [유저 피드백 및 개선사항](#유저-피드백-및-개선사항)
 
@@ -30,6 +31,46 @@
 ## 프로젝트 기간
 
 - 2023.01~2023.03
+
+<br/>
+
+## Project Structure
+
+```
+├── node_modules
+├── public
+├── components
+│   ├── atoms                        
+│   ├── bmi                      
+│   ├── icons                                 
+│   ├── layout
+│   └── payTax
+├── helper                           
+│   ├── client
+│   └── server
+├── pages   
+│   ├── api
+│   ├── income                      
+│   ├── _app.tsx                                 
+│   ├── _document.tsx
+│   ├── 404.tsx
+│   ├── bmi.tsx
+│   ├── character.tsx
+│   ├── differCheck.tsx                        
+│   ├── index.tsx
+│   └── sitemap.xml.ts
+├── prisma
+├── styles
+├── .env
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── seo.config.js
+├── next.config.js
+├── tailwind.config.js
+└── tsconfig.json
+```
+
 
 <br/>
 
