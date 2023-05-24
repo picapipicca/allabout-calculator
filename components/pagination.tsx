@@ -9,27 +9,27 @@ interface PaginationProps {
 }
 
 const  Pagination = ({
-  items, // 191
+  items, 
   currentPage = 1,
   pageSize = 15,
   pageBlockSize = 8,
   onPageChange,
 }: PaginationProps) => {
   const [pagination, setPagination] = useState<{
-    isPrev: boolean;
-    isNext: boolean;
-    pageBlock: number[];
+    isPrevPage: boolean;
+    isNextPage: boolean;
+    pageCount: number[];
     firstPage: number;
     lastPage: number;
   }>({
-    isPrev: false,
-    isNext: false,
-    pageBlock: [],
+    isPrevPage: false,
+    isNextPage: false,
+    pageCount: [],
     firstPage: 0,
     lastPage: 0,
   });
 
-  const changePage = (currentPage: number) => {
+  const handlePageChange = (currentPage: number) => {
     const numPages = Math.ceil(items / pageSize);
     let firstPage, lastPage;
 
@@ -45,38 +45,38 @@ const  Pagination = ({
       );
     }
 
-    let isNext = true;
-    let isPrev = true;
+    let isNextPage = true;
+    let isPrevPage = true;
 
     if (lastPage >= numPages) {
       lastPage = numPages;
-      isNext = false;
+      isNextPage = false;
     }
 
     if (firstPage === 1) {
-      isPrev = false;
+      isPrevPage = false;
     }
 
     if (numPages < pageBlockSize) {
-      isNext = false;
+      isNextPage = false;
     }
 
-    const pageBlock: number[] = [];
+    const pageCount: number[] = [];
 
     for (let i: number = firstPage; i <= lastPage; i++) {
-      pageBlock.push(i);
+      pageCount.push(i);
     }
 
     setPagination({
-      isPrev,
-      isNext,
-      pageBlock,
+      isPrevPage,
+      isNextPage,
+      pageCount,
       firstPage,
       lastPage,
     });
   };
   useEffect(() => {
-    changePage(currentPage);
+    handlePageChange(currentPage);
   }, [currentPage]);
   return (
     <>
@@ -84,14 +84,18 @@ const  Pagination = ({
         <button
           className="aria-checked:bg-pink-500 aria-checked:font-bold aria-checked:cursor-pointer aria-checked:-translate-y-0 border-none rounded-lg p-2 m-0 bg-black text-white text-sm hover:bg-red-50 cursor-pointer -translate-y-[2px] disabled:bg-gray-200 disabled:cursor-not-allowed"
           onClick={() => onPageChange(pagination.firstPage - 1)}
-          disabled={!pagination.isPrev}
+          disabled={!pagination.isPrevPage}
         >
           &lt;
         </button>
-        {pagination.pageBlock.map((i: number) => (
+        {pagination.pageCount.map((i: number) => (
           <button
-            className={`${currentPage === i  ? "bg-primary-500":"bg-black hover:bg-stone-300 hover:text-red-500"} aria-checked:bg-pink-500 aria-checked:font-bold aria-checked:cursor-pointer aria-checked:-translate-y-0 border-none rounded-lg p-2 m-0 text-white text-sm cursor-pointer -translate-y-[2px] disabled:bg-opa disabled:cursor-not-allowed disabled:-translate-y-0`}
-            key={i+1}
+            className={`${
+              currentPage === i
+                ? "bg-primary-500"
+                : "bg-black hover:bg-stone-300 hover:text-red-500"
+            } aria-checked:bg-pink-500 aria-checked:font-bold aria-checked:cursor-pointer aria-checked:-translate-y-0 border-none rounded-lg p-2 m-0 text-white text-sm cursor-pointer -translate-y-[2px] disabled:bg-opa disabled:cursor-not-allowed disabled:-translate-y-0`}
+            key={i + 1}
             onClick={() => onPageChange(i)}
             aria-current="page"
           >
@@ -101,7 +105,7 @@ const  Pagination = ({
         <button
           className="aria-checked:bg-pink-500 aria-checked:font-bold aria-checked:cursor-pointer aria-checked:-translate-y-0 border-none rounded-lg p-2 m-0 bg-black text-white text-sm hover:bg-stone-300 hover:text-black cursor-pointer -translate-y-[2px] disabled:bg-gray-200 disabled:cursor-not-allowed"
           onClick={() => onPageChange(pagination.lastPage + 1)}
-          disabled={!pagination.isNext}
+          disabled={!pagination.isNextPage}
         >
           &gt;
         </button>
