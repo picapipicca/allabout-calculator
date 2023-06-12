@@ -1,4 +1,5 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import Button from "./atoms/button";
 
 interface PaginationProps {
   items: number;
@@ -8,8 +9,8 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-const  Pagination = ({
-  items, 
+const Pagination = ({
+  items,
   currentPage = 1,
   pageSize = 15,
   pageBlockSize = 8,
@@ -80,35 +81,37 @@ const  Pagination = ({
   }, [currentPage]);
   return (
     <>
-      <nav className="flex justify-center items-center gap-1 m-4">
-        <button
-          className="aria-checked:bg-pink-500 aria-checked:font-bold aria-checked:cursor-pointer aria-checked:-translate-y-0 border-none rounded-lg p-2 m-0 bg-black text-white text-sm hover:bg-red-50 cursor-pointer -translate-y-[2px] disabled:bg-gray-200 disabled:cursor-not-allowed"
-          onClick={() => onPageChange(pagination.firstPage - 1)}
+      <nav className="flex justify-center items-center m-4">
+        <Button
+          buttonType="text"
+           extraClass="hover:bg-gray-100 rounded-lg w-fit aspect-square px-0"
           disabled={!pagination.isPrevPage}
+          clickHandler={() => onPageChange(pagination.firstPage - 1)}
         >
           &lt;
-        </button>
+        </Button>
         {pagination.pageCount.map((i: number) => (
-          <button
-            className={`${
+          <Button
+          buttonType="text"
+          extraClass={`hover:bg-gray-100 rounded-lg w-fit aspect-square px-0 ${
               currentPage === i
-                ? "bg-primary-500"
-                : "bg-black hover:bg-stone-300 hover:text-red-500"
-            } aria-checked:bg-pink-500 aria-checked:font-bold aria-checked:cursor-pointer aria-checked:-translate-y-0 border-none rounded-lg p-2 m-0 text-white text-sm cursor-pointer -translate-y-[2px] disabled:bg-opa disabled:cursor-not-allowed disabled:-translate-y-0`}
+                ? "border-2 border-[#07498f] text-primary-500 hover:bg-transparent"
+                : ""
+            }`}
+            clickHandler={() => onPageChange(i)}
             key={i + 1}
-            onClick={() => onPageChange(i)}
-            aria-current="page"
           >
             {i}
-          </button>
+          </Button>
         ))}
-        <button
-          className="aria-checked:bg-pink-500 aria-checked:font-bold aria-checked:cursor-pointer aria-checked:-translate-y-0 border-none rounded-lg p-2 m-0 bg-black text-white text-sm hover:bg-stone-300 hover:text-black cursor-pointer -translate-y-[2px] disabled:bg-gray-200 disabled:cursor-not-allowed"
-          onClick={() => onPageChange(pagination.lastPage + 1)}
+        <Button
+         extraClass="hover:bg-gray-100 rounded-lg w-fit px-0 aspect-square"
+          buttonType="text"
+          clickHandler={() => onPageChange(pagination.lastPage + 1)}
           disabled={!pagination.isNextPage}
         >
           &gt;
-        </button>
+        </Button>
       </nav>
     </>
   );

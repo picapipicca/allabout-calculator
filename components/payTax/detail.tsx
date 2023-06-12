@@ -1,6 +1,8 @@
 import { initComma } from "@/helpers/client/utils";
 import { useState, memo } from "react";
 import ArrowDown from "../icons/arrowDown";
+import Button from "../atoms/button";
+
 type TaxDetailProps = {
   incomeSet: any;
   amount: number;
@@ -96,15 +98,14 @@ const TaxDetail = ({ incomeSet, amount }: TaxDetailProps) => {
                         >
                           {el.value?.name}
                           {el.value?.description && (
-                            <button
-                              className="flex text-center text-xs items-center group cursor-pointer"
-                              onClick={() => openDetail(el.id)}
+                            <Button
+                              buttonType="icon"
+                              clickHandler={() => openDetail(el.id)}
+                              extraClass="mt-1 w-min px-1"
                             >
-                              <span className="text-gray-400 group-hover:text-stone-700">
-                                자세히
-                              </span>
+                              자세히
                               <ArrowDown size={"sm"} toggle={toggle[idx]} />
-                            </button>
+                            </Button>
                           )}
                           {toggle[idx] && (
                             <p className="text-sm whitespace-normal text-gray-500">

@@ -14,6 +14,7 @@ import Pagination from "@/components/pagination";
 import { NextSeo } from "next-seo";
 import client from "@/helpers/server/client";
 import { Amount } from "@prisma/client";
+import Button from "@/components/atoms/button";
 
 interface GraphProps {
   amounts: Amount[];
@@ -168,27 +169,32 @@ const Salary: NextPage<IncomeResponseProps> = ({
             </button>
           </form>
           <div className="px-10 flex text-center items-center py-4">
-            <h2 className="text-left pr-2 w-full">
+            <h2 className="text-left w-full">
               연봉 협상할 때, <br />
-              <span className="font-bold bg-yellow-200 px-1 rounded-full">
+              <span className="font-bold bg-yellow-200 px-2 mr-2  rounded-full">
                 {percent}
               </span>
               퍼센트 오른 <br />내 실수령액은 얼마?
             </h2>
-            <div className="flex justify-end h-12 w-full">
-              <button className="bg-red-100 w-12" onClick={percentOnIncrease}>
+            <div className="flex justify-end h-12 w-1/2">
+              <Button
+                clickHandler={percentOnIncrease}
+                buttonType="text"
+                extraClass=" aspect-square bg-red-100 rounded-l-sm h-full"
+              >
                 +
-              </button>
-              <div className="flex items-center border-r-0 border-l-0 border font-bold px-3 text-base w-max">
+              </Button>
+              <div className="flex items-center border-r-0 border-l-0 border font-bold px-3 text-base min-w-fit">
                 <h3>{percent ? percent : 0}</h3>
                 <span>&nbsp; %</span>
               </div>
-              <button
-                className="bg-primary-100 w-12"
-                onClick={percentOnDecrease}
+              <Button
+                clickHandler={percentOnDecrease}
+                buttonType="text"
+                extraClass="aspect-square bg-primary-100 rounded-r-sm h-full"
               >
                 -
-              </button>
+              </Button>
             </div>
           </div>
           <br />

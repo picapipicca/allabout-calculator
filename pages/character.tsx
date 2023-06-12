@@ -3,6 +3,8 @@ import Graph from "@/components/payTax/graph";
 import { NextPage } from "next";
 import { useState } from "react";
 import { NextSeo } from "next-seo";
+import Copy from "@/components/icons/copy";
+import Button from "@/components/atoms/button";
 
 const CharacterCalculator: NextPage = () => {
   const [text, setText] = useState<string>("");
@@ -29,18 +31,16 @@ const CharacterCalculator: NextPage = () => {
           title="글자수 세기"
           description="입력한 글자의 개수를 바로 확인하여 이력서 및 자기 소개서의 글자수를 맞춰보세요."
           canonical="https://allcalculator.shop/character"
-          additionalLinkTags={
-            [
-              {
-                rel: 'icon',
-                href: '/favicon.ico',
-              },
-              {
-                rel: 'manifest',
-                href: '/site.webmanifest',
-              },
-            ]
-          }
+          additionalLinkTags={[
+            {
+              rel: "icon",
+              href: "/favicon.ico",
+            },
+            {
+              rel: "manifest",
+              href: "/site.webmanifest",
+            },
+          ]}
           additionalMetaTags={[
             {
               name: "keywords",
@@ -76,29 +76,17 @@ const CharacterCalculator: NextPage = () => {
               글자수 세기
             </h1>
           </header>
-          <div className="flex justify-end pb-3">
-            <button
-              className="bg-gray-50 border flex justify-center items-center rounded-md h-8 px-3 text-md shadow-lg hover:bg-gray-100 hover:font-bold disabled:pointer-events-none disabled:opacity-50"
-              onClick={copy}
-              disabled={!text}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75"
-                />
-              </svg>
-              &nbsp; 전체 복사
-            </button>
-          </div>
+
+          <Button
+            clickHandler={copy}
+            disabled={!text}
+            buttonType="default"
+            extraClass="mb-3 rounded-md float-right"
+            size="md"
+          >
+            <Copy />
+            &nbsp; 전체 복사
+          </Button>
           <main>
             <section>
               <textarea

@@ -1,3 +1,4 @@
+import Button from "@/components/atoms/button";
 import Footer from "@/components/layout/footer";
 import { NextPage } from "next";
 import { NextSeo } from "next-seo";
@@ -24,18 +25,16 @@ const DifferCheck: NextPage = () => {
         title="글 다른곳 찾기"
         description="입력한 글이나 코드의 다른곳을 보기쉽게 확인하여 쉽고 빠르게 바로 수정하세요."
         canonical="https://allcalculator.shop/differCheck"
-        additionalLinkTags={
-          [
-            {
-              rel: 'icon',
-              href: '/favicon.ico',
-            },
-            {
-              rel: 'manifest',
-              href: '/site.webmanifest',
-            },
-          ]
-        }
+        additionalLinkTags={[
+          {
+            rel: "icon",
+            href: "/favicon.ico",
+          },
+          {
+            rel: "manifest",
+            href: "/site.webmanifest",
+          },
+        ]}
         additionalMetaTags={[
           {
             name: "keywords",
@@ -72,7 +71,9 @@ const DifferCheck: NextPage = () => {
 
         <header className="py-6">
           <h2 className="font-medium">
-            <span className="font-bold text-xl text-red-600 font-Black">How to ?</span>{" "}
+            <span className="font-bold text-xl text-red-600 font-Black">
+              How to ?
+            </span>{" "}
             &nbsp; 좌,우 칸에 비교하고 싶은 문장들을 각각 넣고 확인하기 버튼을
             눌러주세요.{" "}
           </h2>
@@ -102,24 +103,28 @@ const DifferCheck: NextPage = () => {
               ></textarea>
             </div>
             <div className="flex pb-6">
-              <button
-                onClick={() => {
+              <Button
+                clickHandler={() => {
                   setToggle(true);
                 }}
-                className="rounded-full bg-primary-500 hover:bg-primary-600 text-white font-bold w-1/3 sm:w-1/6 border py-2 shadow-md block mx-auto"
+                buttonType="primary"
+                size="md"
+                extraClass="rounded-full"
               >
                 확인하기
-              </button>
-              <button
-                onClick={() => {
+              </Button>
+              <Button
+                clickHandler={() => {
                   setOldCode("");
                   setNewCode("");
                   setToggle(false);
                 }}
-                className="rounded-full bg-[#f5f8fa] text-stone-600 hover:bg-[#e3e6e8] font-bold w-1/3 sm:w-1/6 border py-2 shadow-md block mx-auto"
+                buttonType="default"
+                size="md"
+                extraClass="rounded-full"
               >
-                전체 삭제
-              </button>
+                전체삭제
+              </Button>
             </div>
           </section>
           {toggle && oldCode && newCode ? (

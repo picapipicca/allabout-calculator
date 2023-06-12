@@ -1,5 +1,8 @@
+import Button from "@/components/atoms/button";
 import Input from "@/components/atoms/input";
 import BmiDetail from "@/components/bmi/detail";
+import Cancel from "@/components/icons/cancel";
+import QuestionMark from "@/components/icons/questionMark";
 import Footer from "@/components/layout/footer";
 import { NextPage } from "next";
 import { NextSeo } from "next-seo";
@@ -37,18 +40,16 @@ const Bmi: NextPage = () => {
         title="체지방률(BMI) 계산기"
         description="내 키에서 적정 몸무게는 몇 키로 일까요? 체지방률(BMI) 계산기로 현재 내 체지방률과 적정 체지방률,적정 몸무게를 확인해보세요."
         canonical="https://allcalculator.shop/bmi"
-        additionalLinkTags={
-          [
-            {
-              rel: 'icon',
-              href: '/favicon.ico',
-            },
-            {
-              rel: 'manifest',
-              href: '/site.webmanifest',
-            },
-          ]
-        }
+        additionalLinkTags={[
+          {
+            rel: "icon",
+            href: "/favicon.ico",
+          },
+          {
+            rel: "manifest",
+            href: "/site.webmanifest",
+          },
+        ]}
         additionalMetaTags={[
           {
             name: "keywords",
@@ -90,57 +91,41 @@ const Bmi: NextPage = () => {
             onClick={() => {
               setOpenModal((prev) => !prev);
             }}
-            // data-modal-target="top-left-modal"
-            // data-modal-toggle="top-left-modal"
             className="block w-min text-emerald-600 font-medium text-sm ml-4 text-center md:w-fit"
             type="button"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
-              />
-            </svg>
+            <QuestionMark />
           </button>
         </header>
         <main className="sm:min-w-[295px] sm:max-w-[80%] mx-auto">
-          <section className="mx-auto h-[40vh] sm:h-fit grid grid-rows-4  grid-flow-col bg-gray-100 w-full sm:flex py-6 px-6 space-y-4 mb-10 sm:space-y-0 items-center">
-            <div className="row-span-1 grid grid-cols-3 sm:flex sm:min-w-[25%] items-center min-h-[7vh] sm:min-h-[60px]">
-              <h3 className="text-lg w-full col-span-1 sm:-mr-4">성별</h3>
-              <button
-                onClick={selectGender}
-                className={`${
-                  gender === "남"
-                    ? "bg-primary-500 text-white"
-                    : "bg-white text-black"
-                } col-start-2 w-full border-r-0 border-2 hover:bg-primary-500 hover:text-white h-full sm:min-h-[60px] rounded-l-lg`}
-              >
-                남
-              </button>
-              <button
-                onClick={selectGender}
-                className={`${
-                  gender === "여"
-                    ? "bg-primary-500 text-white"
-                    : "bg-white text-black"
-                } border-2 w-full hover:bg-primary-500 hover:text-white h-full sm:min-h-[60px] rounded-r-lg`}
-              >
-                여
-              </button>
+          <section className="bg-gray-100 py-4 lg:grid-cols-[1fr_1fr_1fr_160px] px-10 sm:px-4 mt-0 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 last:items-center md:space-x-4 gap-2">
+            <div className="flex text-center items-center justify-between">
+              <h3 className="min-w-fit mr-4">성별</h3>
+              <div className="flex w-2/3">
+                <Button
+                clickHandler={selectGender}
+                  buttonType="default"
+                  extraClass={`rounded-l-lg border-r-0 justify-center min-h-[7vh] ${
+                  gender === "남" ? "bg-primary-500 text-white" : ""
+                }`}
+                >
+                  남
+                </Button>
+                <Button
+                  buttonType="default"
+                  extraClass={`rounded-r-lg border-l-0 justify-center min-h-[7vh] ${
+                  gender === "여" ? "bg-primary-500 text-white" : ""
+                }`}
+                clickHandler={selectGender}
+                >
+                  여
+                </Button>
+              </div>
             </div>
-
-            <div className="row-span-1 grid grid-cols-3 sm:flex items-center pb-2 sm:pb-0 sm:pl-4 sm:w-full">
-              <h3 className="text-lg pr-6 col-span-1">키</h3>
-              <div className="col-span-2 sm:w-full">
-                <Input
+            <div className="flex justify-between items-center">
+              <h3 className="mr-4">키</h3>
+              <div className="w-2/3 md:w-full">
+                  <Input
                   type="number"
                   rightInnerLabel="cm"
                   max={250}
@@ -151,10 +136,9 @@ const Bmi: NextPage = () => {
                 />
               </div>
             </div>
-
-            <div className="row-span-1 grid grid-cols-3 sm:flex sm:w-full items-center sm:pl-4">
-              <h3 className="text-lg pr-6 sm:min-w-fit col-span-1">몸무게</h3>
-              <div className="col-span-2 sm:w-full">
+            <div className="flex justify-between items-center">
+              <h3 className="mr-4 min-w-fit">몸무게</h3>
+              <div className="w-2/3">
                 <Input
                   type="number"
                   rightInnerLabel="kg"
@@ -167,14 +151,14 @@ const Bmi: NextPage = () => {
               </div>
             </div>
 
-            <button
-              onClick={() =>
-                setResult((prev) => (gender && height && weight ? !prev : prev))
-              }
-              className="rounded-lg sm:min-w-[13%] sm:ml-6 bg-primary-500 hover:bg-primary-600 text-white min-h-[6vh] sm:min-h-[60px]"
+            <Button
+              clickHandler={() => {}}
+              buttonType="primary"
+              size="lg"
+              extraClass="rounded-lg min-w-fit sm:w-24 md:col-start-2 lg:col-span-1 whitespace-nowrap"
             >
               확인하기
-            </button>
+            </Button>
           </section>
           <section>
             {result && (
@@ -224,7 +208,7 @@ const Bmi: NextPage = () => {
                               : ""
                           } px-6 py-4`}
                         >
-                          {`${min} - ${max === Infinity ? "" : max}`}
+                          {`${min} - ${max === Infinity ? "∞" : max}`}
                         </td>
                       </tr>
                     ))}
@@ -239,39 +223,25 @@ const Bmi: NextPage = () => {
                 onBlur={() => {
                   setOpenModal(false);
                 }}
-                // id="top-left-modal"
-                // data-modal-placement="top-left"
                 tabIndex={-1}
                 className="fixed top-[70px] left-0 right-0 z-10 w-full sm:w-1/2 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-fit max-h-full"
               >
                 <div className="relative w-full max-w-2xl max-h-full">
                   <div className="relative bg-white rounded-lg shadow">
                     <div className="flex justify-between p-5 pr-4 border-b rounded-t">
-                      <h3 className="text-xl font-medium text-gray-900 pr-2">
+                      <h3 className="text-xl font-medium text-gray-900 pr-1">
                         체질량지수(BMI, Body Mass Index)에 의한 비만도 계산법 과{" "}
                         표준체중 계산법
                       </h3>
-                      <button
-                        onClick={() => setOpenModal(false)}
-                        type="button"
-                        className="text-gray-400 -mt-2 h-fit bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                        // data-modal-hide="top-left-modal"
+                      <Button
+                        extraClass="py-1"
+                        size="sm"
+                        buttonType="icon"
+                        clickHandler={() => setOpenModal(false)}
                       >
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                          ></path>
-                        </svg>
+                        <Cancel />
                         <span className="sr-only">Close modal</span>
-                      </button>
+                      </Button>
                     </div>
 
                     <div className="p-6 space-y-6">
@@ -290,14 +260,14 @@ const Bmi: NextPage = () => {
                     </div>
 
                     <div className="flex justify-end items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
-                      <button
-                        onClick={() => setOpenModal(false)}
-                        // data-modal-hide="top-left-modal"
-                        type="button"
-                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                      <Button
+                        clickHandler={() => setOpenModal(false)}
+                        buttonType="text"
+                        extraClass="rounded-lg hover:bg-gray-100"
+                        size="md"
                       >
                         닫기
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </div>
