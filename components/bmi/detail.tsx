@@ -9,7 +9,7 @@ const BmiDetail = ({height,weight,calculateBmi,calculatePipw}:BmiDetailProps) =>
     
       <div
         onClick={()=>{navigator.clipboard.writeText(`BMI 측정 지수 : ${calculateBmi} 표준 체중 : ${calculatePipw} kg`); alert("복사되었습니다")}}
-        className="block mx-auto max-w-sm p-6 cursor-context-menu bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
+        className="block mx-auto max-w-xl sm:py-6 sm:px-10 p-6 cursor-context-menu bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
       >
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
           <span className="font-bold">

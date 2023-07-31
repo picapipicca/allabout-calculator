@@ -105,7 +105,7 @@ const Bmi: NextPage = () => {
                 <Button
                 clickHandler={selectGender}
                   buttonType="default"
-                  extraClass={`rounded-l-lg border-r-0 justify-center min-h-[7vh] ${
+                  extraClass={`rounded-l-lg border-r-0 justify-center sm:min-h-[3.5rem] ${
                   gender === "남" ? "bg-primary-500 text-white" : ""
                 }`}
                 >
@@ -113,7 +113,7 @@ const Bmi: NextPage = () => {
                 </Button>
                 <Button
                   buttonType="default"
-                  extraClass={`rounded-r-lg border-l-0 justify-center min-h-[7vh] ${
+                  extraClass={`rounded-r-lg border-l-0 justify-center sm:min-h-[3.5rem] ${
                   gender === "여" ? "bg-primary-500 text-white" : ""
                 }`}
                 clickHandler={selectGender}
@@ -136,7 +136,7 @@ const Bmi: NextPage = () => {
                 />
               </div>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center ">
               <h3 className="mr-4 min-w-fit">몸무게</h3>
               <div className="w-2/3">
                 <Input
@@ -152,7 +152,7 @@ const Bmi: NextPage = () => {
             </div>
 
             <Button
-              clickHandler={() => {}}
+              clickHandler={() => setResult((prev) => (gender && height && weight ? !prev : prev))}
               buttonType="primary"
               size="lg"
               extraClass="rounded-lg min-w-fit sm:w-24 md:col-start-2 lg:col-span-1 whitespace-nowrap"
@@ -160,7 +160,7 @@ const Bmi: NextPage = () => {
               확인하기
             </Button>
           </section>
-          <section>
+          <section className="mt-10">
             {result && (
               <BmiDetail
                 height={height}
@@ -169,18 +169,18 @@ const Bmi: NextPage = () => {
                 calculatePipw={calculatePipw}
               />
             )}
-            <div className="py-10">
+            <div className="sm:py-10 py-2 max-w-xl mx-auto mt-10 sm:mt-0">
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500">
                   <thead className="text-xs text-gray-700 uppercase">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 bg-gray-50 text-md sm:text-lg border-b"
+                        className="px-6 py-3 bg-gray-50 sm:text-lg text-base border-b"
                       >
-                        내 체중상태
+                        체중 상태
                       </th>
-                      <th scope="col" className="px-6 py-3 text-lg border-b">
+                      <th scope="col" className="sm:px-6 px-4 py-3 sm:text-lg text-base border-b">
                         체질량 지수(BMI)
                       </th>
                     </tr>
